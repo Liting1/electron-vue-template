@@ -1,11 +1,3 @@
-<!--
- * @Author: your name
- * @Date: 2020-10-21 22:30:22
- * @LastEditTime: 2021-01-12 20:46:17
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \electron-vue-template\src\renderer\views\home.vue
--->
 <template>
 <div class="home">
  <head-nav></head-nav>

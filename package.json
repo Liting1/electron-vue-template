@@ -16,13 +16,10 @@
         "exp-build": "node ./builder/build.js mode=exp",
         "dev-build": "node ./builder/build.js mode=dev"
     },
-    "sideEffects": [
-        "*.css"
-    ],
     "keywords": [
         "木头人"
     ],
-    "author": "",
+    "author": "liting",
     "license": "ISC",
     "devDependencies": {
         "@babel/core": "^7.12.3",

@@ -1,6 +1,7 @@
 <template>
 <div class="nav-container">
   <span><Icon type="ios-checkmark" /></span>
+  <span>66666</span>
 </div>
 </template>
 
@@ -14,5 +15,5 @@ export default {
 .nav-container
   height: 28px
   width: 100%
-  border: 1px solid #ccc
+  border-bottom: 1px solid #000
 </style>
