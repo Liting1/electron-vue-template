@@ -27,11 +27,11 @@ Vue.prototype.$ev = ipcRenderHandle;
 // 注册渲染进程事件
 regEvent.init();
 
-// 定义环境变量
+// 定义环境变量, 由webpack 配置定义
 Vue.prototype.$env = {
-	NODE_ENV,	// node环境
-	MODE,		// 所处环境
-	VERSION, 	// 当前版本
+	NODE_ENV,		// node环境
+	MODE,				// 所处环境
+	VERSION, 		// 当前版本
 };
 
 

@@ -146,8 +146,8 @@ const build = {
 				if(err){
 					reject(chalk.red('打包主进程出错' + err));
 				} else {
-	                console.log('打包主进程完毕！');
-	                resolve();
+	        console.log('打包主进程完毕！');
+	        resolve();
 				}
 			})
 		})

@@ -15,9 +15,10 @@ const registerEvent = require('./registerEvent');
 const createSocket = require('./socket');
 const plugins = require('./plugins');
 const Tray = require('./tray');
+import sqlite from './sql';
 
 class App {
-	constructor({app, BrowserWindow}){
+	constructor({ app, BrowserWindow }) {
 		this.mode = process.env.NODE_ENV;
 		this.app = app;
 		this.BrowserWindow = BrowserWindow;
@@ -30,10 +31,10 @@ class App {
 	 * 当运行第二个应用时，直接聚焦到第一个已经存在的实例上
 	 * @return {[type]} [description]
 	 */
-	runCheck(){
+	runCheck() {
 		const gotTheLock = this.app.requestSingleInstanceLock();
-		if(!gotTheLock) return this.app.quit();
-		this.app.on('second-instance', ()=>{
+		if (!gotTheLock) return this.app.quit();
+		this.app.on('second-instance', () => {
 			let myWindows = this.BrowserWindow.getAllWindows();
 			myWindows.forEach(win => {
 				if (win && !win.isDestroyed()) {
@@ -44,7 +45,7 @@ class App {
 		})
 	}
 	// 创建主窗口
-	createWindow(){
+	createWindow() {
 		this.win = createMainWin();
 		let filePath = this.mode === 'production'
 			? url.pathToFileURL(path.join(__dirname, 'index.html')).href
@@ -54,30 +55,36 @@ class App {
 		this.win.once('ready-to-show', () => this.win.show())
 	}
 	// 添加应用监听事件
-	eventHandle(app){
+	eventHandle(app) {
 		app.on('closed', () => this.closed());
 		app.on('ready', () => this.ready());
 		app.on('window-all-closed', () => this.windowAllClosed());
 		app.on('activate', () => this.activate());
 	}
-	activate(){
-		if(!this.win) this.createWindow();
+	activate() {
+		if (!this.win) this.createWindow();
 	}
-	windowAllClosed(){
-		if(process.platform !== 'darwin') this.app.quit();
+	windowAllClosed() {
+		if (process.platform !== 'darwin') this.app.quit();
 	}
-	ready(){
+	ready() {
+		// 初始化数据库
 		plugins.installPlugin();		// 安装插件
+		sqlite.initDatabase().then(({msg})=>{
+			console.log(msg);
+			// 查询数据库
+			// sqlite.selectWhere('test').then(res=>{
+			// 	console.log(res);
+			// });
+		})
 		this.createWindow(); 			// 创建主窗口
 		this.tray = new Tray();			// 创建应用托盘
 		createSocket.init();		// 创建socket
 		shortcut.init();			// 设置快捷键
 		registerEvent.init();	// 注册事件
 	}
-	closed(){
+	closed() {
 		this.win = null;
 	}
 }
 let app = new App(electron);
-
-

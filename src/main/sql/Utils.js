@@ -1,5 +1,8 @@
+import fs from 'fs';
+import path from 'path';
+import {app} from "electron";
 
-module.exports =  class Format {
+class Utils {
 	// 判断一个变量类型是否为对象
 	isObject(obj){
 		return Object.prototype.toString.call(obj) === "[object Object]";
@@ -33,7 +36,7 @@ module.exports =  class Format {
 	formatData(data){
 		return Object.entries(data).reduce((a,b,i) => ({
 			key: a.key + (i ? ',' : '') + b[0],
-			val: a.val + (i ? ',' : '') + (this.isString(b[1]) ? `'${b[1]}'`: b[1])
+			val: a.val + (i ? ',' : '') + (this.isString(b[1]) ? `'${b[1]}'`: (b[1] === undefined ? null : b[1]))
 		}), {key: '', val: ''});
 	}
 	/**
@@ -42,7 +45,7 @@ module.exports =  class Format {
 	 */
 	formatWhereData(whe, spt = ' AND '){
 		return Object.entries(whe).map(ele => (
-			ele[0]+'='+ (this.isString(ele[1])? `'${ele[1]}'`: ele[1]))
+			ele[0]+'='+ (this.isString(ele[1])? `'${ele[1]}'`: (ele[1] === undefined ? null: ele[1])))
 		).join(spt);
 	}
 	/**
@@ -73,7 +76,7 @@ module.exports =  class Format {
 	diff(oldField, newField) {
 		newField.forEach((item, index)=>{
 			let idx = oldField.indexOf(item);
-			if(idx >= 0){
+			if(idx>=0){
 				newField[index] = '';
 				oldField[idx] = '';
 			}
@@ -82,4 +85,75 @@ module.exports =  class Format {
 		oldField = oldField.filter(item => item)
 		return { newField, oldField }
 	}
+	// 新增字段如果存在默认值则设置默认值
+	defaultValue(val){
+		if(val === undefined) return '';
+		return this.isString(val)
+		? `default '${val}'`
+		: `default ${val}`;
+	}
+	// 数据库存储地址
+	getDatabaseUrl(){
+		let dbName = {
+			'dev': 'dbDev.sqlite',		// 开发环境
+			'test': 'dbTest.sqlite',	// 测试环境
+			'exp': 'dbExp.sqlite',		// 体验环境
+			'pro': 'db.sqlite' 				// 生产环境
+		};
+		const databaseUrl = dbName[MODE];
+		return {
+			dbpath: path.join(app.getPath("userData"), databaseUrl),
+			dbBackuppath: path.join(app.getPath("userData"), 'backup' + databaseUrl)
+		};
+	}
+	// 错误处理函数
+	errorHandler(error, sql){
+		if(!this.once){
+			this.once = true;
+			// 使用备份数据库
+			let {dbBackuppath, dbpath} = this.getDatabaseUrl();
+			fs.rename(dbBackuppath, dbpath, (err)=>{
+				if(err) {
+					// 如果复制使用备份数据库任然出错，则删除数据库从新初始化
+					fs.unlink(dbpath, async err => {
+						if(err) {
+							this.log(err, "删除文件失败");
+						} else {
+							// 删除缓存文件
+							file.hanldeClearFileFolder(store.system.filePath);
+							await this.initDatabase();
+						}
+						this.once = false;
+						this.win.webContents.send('dbError');
+					});
+				};
+				this.log(error, sql);
+			})
+		}
+	}
+	// 错误日志处理函数
+	log(err, sql){
+		let {dbpath} = this.getDatabaseUrl();
+		let txt = `${sql}---${err}---${process.env.VUE_APP_TITLE}---${new Date().toLocaleString()} \n`;
+		fs.appendFile(path.dirname(dbpath) + '/database.log',txt , (e)=>{
+			if(e) console.log('写入日志出错');
+		})
+	}
+	/**
+	 *  数据库备份
+	 */
+	backupDataBase(db){
+		const tiemrFun = (bool) => {
+			let blob = bool ? db.export() : fs.readFileSync(this.options.database);
+			fs.writeFile(this.getDatabaseUrl().dbBackuppath, blob, (err) => {
+				if(err) console.log("备份数据库失败");
+			});
+		}
+		// 每次启动程序时备份一次
+		tiemrFun(true);
+		// 启动程序后每隔半小时备份一次
+		setInterval(()=>tiemrFun(false), 1800000);
+	}
 }
+
+export default Utils;

@@ -11,7 +11,6 @@ class Shortcut {
 		this.openTools(this.win);
 	}
 	unregister(){
-		// globalShortcut.unregisterAll();
 		globalShortcut.unregister('CommandOrControl+Shift+i');
 	}
 	register(key, cb){

@@ -1,6 +1,5 @@
 import Utils from './Utils';
-import store from '../store'
-class Table extends Utils{
+class Table extends Utils {
 	/**
 	 * 初始化数据库表
 	 * @param  {String} tableName 表名
@@ -10,16 +9,31 @@ class Table extends Utils{
 	 */
 	createTableSql(tableName, data, initData) {
 		let insert = '';
-		if(initData){
-			initData = this.formatData(initData);
-			insert = `INSERT INTO ${tableName} (${initData.key}) values(${initData.val})`;
+		if (initData) {
+			let init = this.formatData(initData);
+			insert = `INSERT INTO ${tableName} (${init.key}) values(${init.val})`;
 		}
 		return {
 			name: tableName,
 			sql: `CREATE TABLE ${tableName} (${this.formatCreateTableData(data)}); ${insert}`,
 			field: Object.keys(data),
-			data
+			data,
+			initData: initData || {}
 		}
+	}
+	// 创建表
+	test() {
+		return this.createTableSql('test', {
+			username: 'varchar(10)',
+			passworld: 'varchar(20)',
+			userID: 'varchar(5)',
+			desc: 'text',
+		}, {
+			username: 'liting',
+			passworld: '123456',
+			userID: '00000',
+			desc: 'xxxxx',
+		});
 	}
 }
 export default Table;
