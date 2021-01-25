@@ -16,7 +16,8 @@
         "exp-build": "node ./builder/build.js mode=exp",
         "dev-build": "node ./builder/build.js mode=dev"
     },
-    "author": "木头人",
+    "keywords": ["Electron", "Vue", "template", "webpack"],
+    "author": "liting",
     "license": "ISC",
     "devDependencies": {
         "@babel/core": "^7.12.3",
@@ -30,7 +31,7 @@
         "copy-webpack-plugin": "^6.3.2",
         "core-js": "^2.6.11",
         "css-loader": "^5.0.0",
-        "electron": "^11.1.1",
+        "electron": "^11.2.0",
         "electron-builder": "^22.9.1",
         "electron-dev-webpack-plugin": "^1.0.5",
         "electron-devtools-installer": "^3.1.1",
@@ -89,6 +90,7 @@
             "artifactName": "${productName}.${ext}"
         },
         "win": {
+            "icon": "./icon.jpg",
             "target": [
                 {
                     "target": "nsis",

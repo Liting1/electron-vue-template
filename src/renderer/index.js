@@ -15,10 +15,12 @@ import regEvent from './event/regevent';
 import 'view-design/dist/styles/iview.css';
 import {
 	Button,
-	Table
+	Table,
+	Icon
 } from 'view-design';
 Vue.component('Button', Button);
 Vue.component('Table', Table);
+Vue.component('Icon', Icon);
 
 // 触发主进程的自定义事件
 Vue.prototype.$ev = event;

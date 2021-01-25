@@ -68,4 +68,5 @@ class RegisterEvent {
 app.on('will-quit', ()=>{
 	ipcMain.removeAllListeners();
 })
+
 module.exports = new RegisterEvent;

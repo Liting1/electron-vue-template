@@ -29,8 +29,8 @@ module.exports = {
 			test: /\.s[ac]ss$/,
 			use: [
 				...(
-					isDevMode 
-					? ['vue-style-loader', 'style-loader'] 
+					isDevMode
+					? ['vue-style-loader', 'style-loader']
 					: [MiniCssExtractPlugin.loader]
 				),
 				'css-loader',

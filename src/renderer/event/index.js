@@ -22,5 +22,9 @@ export default {
 	// 下载完毕安装最新版程序
 	installationProgram(){
 		ipcRenderer.send('isUpdateNow');
-	}
+	},
+	// 安装应用
+	isUpdateNow(){
+        ipcRenderer.send('isUpdateNow')
+    }
 }

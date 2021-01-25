@@ -23,13 +23,13 @@ function updateHandle(win){
 	let timer = null;
 	// 设置更新地址
 	autoUpdater.setFeedURL(uploadUrl);
-	
+
 	// 更新出错出
 	autoUpdater.on('error', function(err){
 		message.error.err = err;
 		sendUpdateMessage(message.error);
 	});
-	
+
 	// 检查更新
 	autoUpdater.on('checking-for-update', ()=>{
 		sendUpdateMessage(message.checking);
@@ -56,7 +56,7 @@ function updateHandle(win){
 			console.log('开始更新');
 			autoUpdater.quitAndInstall();
 		});
- 
+
 		// win.webContents.send('isUpdateNow');
 	});
 

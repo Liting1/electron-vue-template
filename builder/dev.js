@@ -27,13 +27,13 @@ function devRender(){
 			publicPath: webpackDevConfig.output.publicPath,
 			compress: true,		// 开发服务器启用gzip压缩
 			hot: true,				// 开启热加载
-			// proxy,
+			proxy,
 		}).listen(8090, 'localhost', err => {
 			if(err) {
 				reject(err);
 			}else {
 				resolve();
-			}	
+			}
 		})
 	})
 }

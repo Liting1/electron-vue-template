@@ -10,10 +10,11 @@ const url = require("url");
 const path = require("path");
 const shortcut = require('./shortcut');
 const electron = require('electron');
-const { createMianWin } = require('./createWindow');
+const { createMainWin } = require('./createWindow');
 const registerEvent = require('./registerEvent');
 const createSocket = require('./socket');
 const plugins = require('./plugins');
+const Tray = require('./tray');
 
 class App {
 	constructor({app, BrowserWindow}){
@@ -21,6 +22,7 @@ class App {
 		this.app = app;
 		this.BrowserWindow = BrowserWindow;
 		this.win = null;
+		this.tray = null;
 		this.runCheck();
 		this.eventHandle(app);
 	}
@@ -43,8 +45,7 @@ class App {
 	}
 	// 创建主窗口
 	createWindow(){
-		this.win = createMianWin();
-		this.mode === 'production';
+		this.win = createMainWin();
 		let filePath = this.mode === 'production'
 			? url.pathToFileURL(path.join(__dirname, 'index.html')).href
 			: "http://localhost:8090";
@@ -68,6 +69,7 @@ class App {
 	ready(){
 		plugins.installPlugin();		// 安装插件
 		this.createWindow(); 			// 创建主窗口
+		this.tray = new Tray();			// 创建应用托盘
 		createSocket.init();		// 创建socket
 		shortcut.init();			// 设置快捷键
 		registerEvent.init();	// 注册事件
@@ -77,4 +79,5 @@ class App {
 	}
 }
 let app = new App(electron);
+
 
