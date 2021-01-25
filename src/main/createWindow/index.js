@@ -19,6 +19,7 @@ module.exports = {
 			show: false,				// 创建窗口后不显示窗口
 			hasShadow: false,
 			webPreferences:{
+				contextIsolation: false,
 				nodeIntegration: true, // 在渲染进程引入node模块
 			}
 		}, options);

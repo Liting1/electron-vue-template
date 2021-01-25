@@ -67,21 +67,14 @@ class App {
 	windowAllClosed() {
 		if (process.platform !== 'darwin') this.app.quit();
 	}
-	ready() {
-		// 初始化数据库
-		plugins.installPlugin();		// 安装插件
-		sqlite.initDatabase().then(({msg})=>{
-			console.log(msg);
-			// 查询数据库
-			// sqlite.selectWhere('test').then(res=>{
-			// 	console.log(res);
-			// });
-		})
+	async ready() {
+		await sqlite.initDatabase()		// 初始化数据库
 		this.createWindow(); 			// 创建主窗口
 		this.tray = new Tray();			// 创建应用托盘
-		createSocket.init();		// 创建socket
-		shortcut.init();			// 设置快捷键
-		registerEvent.init();	// 注册事件
+		createSocket.init();			// 创建socket
+		shortcut.init();				// 设置快捷键
+		registerEvent.init();			// 注册事件
+		plugins.installPlugin();		// 安装插件
 	}
 	closed() {
 		this.win = null;

@@ -7,7 +7,7 @@ module.exports = {
 	// vue 开发插件
 	vueDevtools(){
 		installExtension(VUEJS_DEVTOOLS)
-        .then((name) => console.log(`Added Extension:  ${name}`))
+        .then((name) => console.log(`添加扩展:  ${name}`))
         .catch((err) => console.log('An error occurred: ', err));
 	}
 }

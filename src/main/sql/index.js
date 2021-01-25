@@ -36,7 +36,8 @@ class Db extends Table {
 						// 数据库备份
 						this.backupDataBase(this.db);
 						// 将数据库写入本地文件
-						this.throttlingFun(() => resolve({ msg: '创建数据成功' }));
+						this.throttlingFun();
+						resolve({ msg: '创建数据成功' });
 					} else {
 						// 如果存在该数据库则进行数据库同步
 						try {
@@ -67,8 +68,8 @@ class Db extends Table {
 							oldField.forEach(t => this.db.run(`DROP TABLE ${t}`));
 							// 备份数据库
 							this.backupDataBase(this.db);
-							this.throttlingFun(() => resolve({ msg: '同步数据库成功' }));
-							;
+							this.throttlingFun();
+							resolve({ msg: '同步数据库成功' });
 						} catch (err) {
 							this.errorHandler(err);
 						}
