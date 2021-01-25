@@ -7,10 +7,8 @@
 	<Button @click="checkUpdate">点击按钮手动检查更新</Button>
 	<Button @click="alert">查看当前应用版本</Button>
 	<Button @click="update">安装程序</Button>
-
 	<hr>
 	<Button @click="sendGet">发送get请求</Button>
-	<p class="red">1111111111</p>
 </div>
 </template>
 
@@ -70,8 +68,4 @@ export default {
 </script>
 
 <style scoped lang="sass">
-.red
-	color: red
-	font-size: 30px
-	border: solid
 </style>

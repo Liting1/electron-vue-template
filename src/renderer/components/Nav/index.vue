@@ -1,13 +1,19 @@
 <template>
-<div class="nav-container">
+<div class="nav-container drag">
   <span><Icon type="ios-checkmark" /></span>
   <span>66666</span>
+
+  <Control />
 </div>
 </template>
 
 <script>
+import Control from "./Control";
 export default {
-  name: "Nav"
+  name: "Nav",
+  components: {
+    Control,
+  }
 }
 </script>
 
@@ -15,5 +21,5 @@ export default {
 .nav-container
   height: 28px
   width: 100%
-  border-bottom: 1px solid #000
+  border-bottom: 1px solid #ccc
 </style>
