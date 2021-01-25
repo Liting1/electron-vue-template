@@ -5,8 +5,8 @@
     "main": "./app/main.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "dev": "node ./builder/dev.js",
-        "build": "node ./builder/build.js",
+        "dev": "node ./builder/dev.js mode=dev",
+        "build": "node ./builder/build.js mode=dev",
         "test-serve": "node ./builder/dev.js mode=test",
         "pro-serve": "node ./builder/dev.js mode=pro",
         "dev-serve": "node ./builder/dev.js mode=dev",
@@ -16,7 +16,12 @@
         "exp-build": "node ./builder/build.js mode=exp",
         "dev-build": "node ./builder/build.js mode=dev"
     },
-    "keywords": ["Electron", "Vue", "template", "webpack"],
+    "keywords": [
+        "Electron",
+        "Vue",
+        "template",
+        "webpack"
+    ],
     "author": "liting",
     "license": "ISC",
     "devDependencies": {
@@ -55,7 +60,7 @@
         "ws": "^7.4.1"
     },
     "dependencies": {
-        "axios": "^0.20.0",
+        "axios": "^0.21.1",
         "view-design": "^4.4.0",
         "vue": "^2.6.12",
         "vue-router": "^3.4.7",

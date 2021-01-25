@@ -10,7 +10,7 @@ import Vue from 'vue';
 import App from './App.vue';
 import store from './store';
 import router from './router';
-import event from './event';
+import ipcRenderHandle from './event';
 import regEvent from './event/regevent';
 import 'view-design/dist/styles/iview.css';
 import {
@@ -23,8 +23,8 @@ Vue.component('Table', Table);
 Vue.component('Icon', Icon);
 
 // 触发主进程的自定义事件
-Vue.prototype.$ev = event;
-// 注册事件
+Vue.prototype.$ev = ipcRenderHandle;
+// 注册渲染进程事件
 regEvent.init();
 
 // 定义环境变量
@@ -33,7 +33,6 @@ Vue.prototype.$env = {
 	MODE,		// 所处环境
 	VERSION, 	// 当前版本
 };
-
 
 
 let app = new Vue({
