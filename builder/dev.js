@@ -10,9 +10,9 @@ function buildMain(){
 		webpack(webpackMainConfig, err => {
 			if(err) {
 				console.log('打包主进程遇到Error！');
-                reject(err);
+        reject(err);
 			} else {
-                resolve();
+        resolve();
 			}
 		});
 	})
@@ -25,8 +25,9 @@ function devRender(){
 	    new WebpackDevServer(compiler, {
 			contentBase: webpackDevConfig.output.path,
 			publicPath: webpackDevConfig.output.publicPath,
+			compress: true,		// 开发服务器启用gzip压缩
 			hot: true,				// 开启热加载
-			proxy,
+			// proxy,
 		}).listen(8090, 'localhost', err => {
 			if(err) {
 				reject(err);

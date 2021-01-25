@@ -22,7 +22,6 @@ Vue.component('Table', Table);
 
 // 触发主进程的自定义事件
 Vue.prototype.$ev = event;
-
 // 注册事件
 regEvent.init();
 

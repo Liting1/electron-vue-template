@@ -5,7 +5,7 @@
     "main": "./app/main.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "dev": "node ./builder/dev.js mode=dev",
+        "dev": "node ./builder/dev.js",
         "build": "node ./builder/build.js",
         "test-serve": "node ./builder/dev.js mode=test",
         "pro-serve": "node ./builder/dev.js mode=pro",
@@ -16,13 +16,7 @@
         "exp-build": "node ./builder/build.js mode=exp",
         "dev-build": "node ./builder/build.js mode=dev"
     },
-    "sideEffects": [
-        "*.css"
-    ],
-    "keywords": [
-        "木头人"
-    ],
-    "author": "",
+    "author": "木头人",
     "license": "ISC",
     "devDependencies": {
         "@babel/core": "^7.12.3",

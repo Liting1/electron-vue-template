@@ -1,14 +1,5 @@
-<!--
- * @Author: your name
- * @Date: 2020-10-21 22:30:22
- * @LastEditTime: 2021-01-12 20:46:17
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \electron-vue-template\src\renderer\views\home.vue
--->
 <template>
 <div class="home">
-	<!-- <input type="text" @copy="copyHandle" @paste="pasteHandle"> -->
 	<Button @click="openInitiate">打开一个新的窗口-窗口链接地址是服务器</Button>
 	<Button @click="openView">打开一个新的窗口-窗口地址是本地文件</Button>
 	<Button @click="notice">显示通知</Button>
@@ -19,13 +10,11 @@
 
 	<hr>
 	<Button @click="sendGet">发送get请求</Button>
+	<p class="red">1111111111</p>
 </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import axios from 'axios';
-import headNav from "@/components/head";
 export default {
 	name: 'home',
 	data(){
@@ -33,21 +22,9 @@ export default {
 			txt: "hello electron1"
 		}
 	},
-	components: {
-		headNav
-	},
-	computed:{
-		...mapGetters({
-			userInfo: "getUserInfo"
-		})
-	},
-	mounted(){
-		console.log(this.userInfo);
-	},
 	methods: {
 		sendGet(){
 			console.log('get send');
-
 			axios.get('/api/user?ID=12345')
 			.then(function (response) {
 			    console.log(response);
@@ -91,3 +68,10 @@ export default {
 	}
 }
 </script>
+
+<style scoped lang="sass">
+.red
+	color: red
+	font-size: 30px
+	border: solid
+</style>

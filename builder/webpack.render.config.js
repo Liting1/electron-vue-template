@@ -13,7 +13,7 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 module.exports = {
 	mode: isDevMode ? 'development': 'production',
 	entry: {
-		rebderer: path.join(__dirname, '../src/renderer/index.js')
+		renderer: path.join(__dirname, '../src/renderer/index.js')
 	},
 	output: {
 		path: path.join(__dirname, '../app/'),
@@ -38,8 +38,8 @@ module.exports = {
 					loader: 'sass-loader',
 					options: {
 						sassOptions: {
-				        	indentedSyntax: true // 如需使用花括号嵌套模式则设置为false
-				        }
+							indentedSyntax: true // 如需使用花括号嵌套模式则设置为false
+						}
 					}
 				}
 			]
@@ -48,7 +48,7 @@ module.exports = {
 			use: [
 				...(
 					isDevMode 
-					? ['vue-style-loader', 'style-loader'] 
+					? ['vue-style-loader', 'style-loader']
 					: [MiniCssExtractPlugin.loader]
 				),
 				'css-loader'
@@ -102,19 +102,20 @@ module.exports = {
 		}
 	},
 	plugins: [
+		// new BundleAnalyzerPlugin({ analyzerPort: 8888 }), // chunks 分析插件
 		new CleanWebpackPlugin({ // 清除所有文件，main.js文件除外
 			cleanOnceBeforeBuildPatterns: ['**/*', '!main.js*']
 		}),
 		new HtmlWebpackPlugin({		// HTML页面模板插件
-			template: './src/renderer/index.html',
-			filename: './index.html',
+			template: path.join(__dirname, '../src/renderer/index.html'),
+			filename: 'index.html',
 			hash: true,
 		}),
-		new VueLoaderPlugin(),		// vue-loader 加载插件
 		new MiniCssExtractPlugin({	// css打包成css文件插件
 			filename: 'css/[name].css',
 			chunkFilename: 'css/[id].css',
 		}),
+		new VueLoaderPlugin(),		// vue-loader 加载插件
 		new CopyPlugin({ // 复制静态文件
 			patterns: [{
 				from: path.join(__dirname, '../src/static/'),
@@ -124,7 +125,6 @@ module.exports = {
 				to: path.join(__dirname, '../app/pages')
 			}]
 		}),
-		// new BundleAnalyzerPlugin({ analyzerPort: 8888 }), // chunks 分析插件
 		new webpack.optimize.SplitChunksPlugin({
 			cacheGroups: {
 				default: {
