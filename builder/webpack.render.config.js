@@ -8,8 +8,8 @@ const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { params } = require('./common.config');
 const { version } = require('../config/version');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const ESLintPlugin = require('eslint-webpack-plugin');
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+// const ESLintPlugin = require('eslint-webpack-plugin');
 // const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 module.exports = {
@@ -108,11 +108,10 @@ module.exports = {
     new CleanWebpackPlugin({ // 清除所有文件，main.js文件除外
       cleanOnceBeforeBuildPatterns: ['**/*', '!main.js*']
     }),
-    new ESLintPlugin({
-      extensions: ['js', 'vue'],
-      emitWarning: true,
-      fix: true
-    }),
+    // new ESLintPlugin({
+    //   extensions: ['js', 'vue'],
+    //   emitWarning: true,
+    // }),
     // new StyleLintPlugin({
     //   		files: ['**/*.{html,vue,css,sass,scss}'],
     //   	}),
