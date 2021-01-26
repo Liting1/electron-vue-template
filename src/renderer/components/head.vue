@@ -13,32 +13,32 @@
 </template>
 <script>
 export default {
-	data(){
-		return {
-			imgUrl: require("@/assets/images/tuite.png"),
-			goodsList: [{
-				id: 1,
-				name: '香蕉',
-				price: 5
-			},{
-				id: 2,
-				name: '苹果',
-				price: 3
-			},{
-				id: 3,
-				name: '梨子',
-				price: 8
-			}]
-		}
-	},
-	methods:{
-		clickHander(){
-			for(var i = 0; i<this.goodsList.length; i++){
-				console.log(this.goodsList[i], i);
-			}
-		}
-	}
-}
+  data () {
+    return {
+      imgUrl: require('@/assets/images/tuite.png'),
+      goodsList: [{
+        id: 1,
+        name: '香蕉',
+        price: 5
+      }, {
+        id: 2,
+        name: '苹果',
+        price: 3
+      }, {
+        id: 3,
+        name: '梨子',
+        price: 8
+      }]
+    };
+  },
+  methods: {
+    clickHander () {
+      for (let i = 0; i < this.goodsList.length; i++) {
+        console.log(this.goodsList[i], i);
+      }
+    }
+  }
+};
 </script>
 <style scoped lang="sass">
 .header

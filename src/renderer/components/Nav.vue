@@ -1,14 +1,14 @@
 <template>
-<div class="nav-container">
-  <span><Icon type="ios-checkmark" /></span>
-  <span>66666</span>
-</div>
+  <div class="nav-container">
+    <span><Icon type="ios-checkmark" /></span>
+    <span>66666</span>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "Nav"
-}
+  name: 'Nav'
+};
 </script>
 
 <style scoped lang="sass">
