@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div class="home">
     <Button @click="openInitiate">
       打开一个新的窗口-窗口链接地址是服务器
@@ -28,6 +29,19 @@
       1111111111
     </p>
   </div>
+=======
+<div class="home">
+	<Button @click="openInitiate">打开一个新的窗口-窗口链接地址是服务器</Button>
+	<Button @click="openView">打开一个新的窗口-窗口地址是本地文件</Button>
+	<Button @click="notice">显示通知</Button>
+	<hr>
+	<Button @click="checkUpdate">点击按钮手动检查更新</Button>
+	<Button @click="alert">查看当前应用版本</Button>
+	<Button @click="update">安装程序</Button>
+	<hr>
+	<Button @click="sendGet">发送get请求</Button>
+</div>
+>>>>>>> temp
 </template>
 
 <script>
@@ -85,8 +99,4 @@ export default {
 </script>
 
 <style scoped lang="sass">
-.red
-	color: red
-	font-size: 30px
-	border: solid
 </style>
