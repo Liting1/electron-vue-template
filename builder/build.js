@@ -10,7 +10,7 @@ const renderConfig = require('./webpack.render.config.js');
 const mainRenderConfig = require('./webpack.main.config');
 const electronBuilder = require('electron-builder');
 const packageJson = require('../package.json');
-const { v4: uuidv4 } = require('uuid');
+// const { v4: uuidv4 } = require('uuid');
 const archiver = require('archiver');
 // 设置 app 一些选项
 // 打包渲染进程
@@ -58,19 +58,19 @@ const build = {
     fs.writeFileSync(path.join(__dirname, '../package.json'), JSON.stringify(packageJson, null, 4));
   },
   // 创建文件夹，如果文件夹已存在则什么都不做
-  async createFolder (outpath) {
+  async createFolder (outputPath) {
     return new Promise(resolve => {
-      fs.exists(outpath, exists => {
-        if (!exists) fs.mkdirSync(outpath);
+      fs.stat(outputPath, exists => {
+        if (exists) fs.mkdirSync(outputPath);
         resolve(1);
       });
     });
   },
   buildApp () {
     this.viewBuilder().then(async () => {
-      const outpath = path.join(__dirname, '../pack/');
+      const outputPath = path.join(__dirname, '../pack/');
       // 创建一个pack目录
-      await this.createFolder(outpath);
+      await this.createFolder(outputPath);
       const zipPath = renderConfig.output.path;
       const fileName = this.setup.versionType + '-' + this.setup.version.join('.');
       const filePath = path.join(zipPath, `../pack/${fileName}.zip`);
@@ -98,16 +98,16 @@ const build = {
     });
   },
   compress (filePath, zipPath, level = 9, callback) {
-    const outpath = fs.createWriteStream(zipPath);
+    const fileStream = fs.createWriteStream(zipPath);
     const archive = archiver('zip', {
       zlib: { level }
     });
-    archive.pipe(outpath);
+    archive.pipe(fileStream);
     archive.directory(filePath, false);
     archive.on('error', err => {
       if (callback) callback('error', err);
     });
-    outpath.on('close', () => {
+    fileStream.on('close', () => {
       const size = archive.pointer();
       if (callback) callback('success', size);
     });
@@ -144,8 +144,8 @@ const build = {
         if (err) {
           reject(chalk.red('打包主进程出错' + err));
         } else {
-        	console.log('打包主进程完毕！');
-        	resolve();
+          console.log('打包主进程完毕！');
+          resolve();
         }
       });
     });
