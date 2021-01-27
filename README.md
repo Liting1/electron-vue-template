@@ -14,6 +14,8 @@
 1. 打包应用程序时需要下载 electron-v11.2.0-win32-x64.zip 文件，下载速度很慢，下载失败。
 > 如果时window系统，可以将项目下的 /doc/electron-v11.2.0-win32-x64.zip 已经下载好的文件直接复制到 `C:\Users\liting\AppData\Local\electron\Cache`文件夹下, 注：第二个目录时对应用户的目录，每个人的可能不一样
 
+3. https://npm.taobao.org/mirrors/electron/ electron打包所需文件所有版本下载地址
+
 2. 下载安装依赖时如果比较慢，或者是使用npm下载electron依赖比较慢
 可以使用 cnpm 从新下载依赖。
 
@@ -38,7 +40,7 @@
 |	 |—— main             主线程文件目录
 |	 |—— pages            其他渲染页面--子窗口页面
 |	 |—— renderer	        主渲染线程目录
-|  |—— static           静态资源目录
+|    |—— static           静态资源目录
 |—— .babelrc            babel 配置文件
 |—— .gitignore          git 配置文件
 |—— package-lock.json

@@ -6,16 +6,16 @@
 			<span>{{item.price}}</span>
 		</li>
 	</ul>
-	<img src="@/assets/images/tuite.png" alt="">
-	<img :src="imgUrl" alt="">
-	<div class="imgs"></div>
+	<img src="@/assets/images/1.jpg" width="200">
+	<img :src="imgUrl">
+	<div class="img"></div>
 </div>
 </template>
 <script>
 export default {
   data () {
     return {
-      imgUrl: require('@/assets/images/tuite.png'),
+      imgUrl: require('@/assets/images/result.png'),
       goodsList: [{
         id: 1,
         name: '香蕉',
@@ -32,7 +32,7 @@ export default {
     };
   },
   methods: {
-    clickHander () {
+    clickHandler () {
       for (let i = 0; i < this.goodsList.length; i++) {
         console.log(this.goodsList[i], i);
       }
@@ -45,5 +45,10 @@ export default {
 	ul
 		li
 			font-size: 20px
-			color: red
+			color: blue
+.header .img
+  width: 300px
+  height: 300px
+  border: solid 1px #000
+  background: url('@/assets/images/tuite.png')
 </style>

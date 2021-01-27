@@ -90,7 +90,7 @@ const build = {
       const renderCompiler = webpack(renderConfig);
       renderCompiler.run(err => {
         if (err) {
-          reject(chalk.red('打包渲染进程:' + err));
+          reject(chalk.red('打包渲染进程错误:' + err));
         } else {
           console.log('打包渲染进程完毕！');
           resolve();
@@ -103,7 +103,7 @@ const build = {
       const mainRenderCompiler = webpack(mainRenderConfig);
       mainRenderCompiler.run(err => {
         if (err) {
-          reject(chalk.red('打包主进程出错' + err));
+          reject(chalk.red('打包主进程错误:' + err));
         } else {
           console.log('打包主进程完毕！');
           resolve();

@@ -125,7 +125,7 @@ module.exports = {
     new HtmlWebpackPlugin({		// HTML页面模板插件
       template: path.join(__dirname, '../src/renderer/index.html'),
       filename: 'index.html',
-      hash: true
+      hash: true,
     }),
     new MiniCssExtractPlugin({	// css打包成css文件插件
       filename: 'css/[name].css',
