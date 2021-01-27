@@ -8,13 +8,13 @@
 </template>
 
 <script>
-import Control from "./Control";
+import Control from './Control';
 export default {
-  name: "Nav",
+  name: 'Nav',
   components: {
-    Control,
+    Control
   }
-}
+};
 </script>
 
 <style scoped lang="sass">

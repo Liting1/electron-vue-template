@@ -25,10 +25,10 @@ export default {
     sendGet () {
       axios.get('/api/user?ID=12345')
         .then(function (response) {
-			    console.log(response);
+          console.log(response);
         })
         .catch(function (error) {
-			    console.log(error);
+          console.log(error);
         });
     },
     checkUpdate () {
@@ -41,7 +41,7 @@ export default {
       this.$ev.openViewWin();
     },
     alert () {
-		  console.log(this.$env);
+      console.log(this.$env);
     },
     update () {
       this.$ev.installationProgram();
@@ -59,7 +59,7 @@ export default {
         body: '通知的主体内容'
       });
       myNotification.onclick = () => {
-			  console.log('Notification clicked');
+        console.log('Notification clicked');
       };
     }
   }

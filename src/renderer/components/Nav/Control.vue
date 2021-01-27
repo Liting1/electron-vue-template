@@ -8,8 +8,8 @@
 
 <script>
 export default {
-  name: "Control"
-}
+  name: 'Control'
+};
 </script>
 
 <style scoped lang="sass">

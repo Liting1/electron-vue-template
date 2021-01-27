@@ -1,0 +1,18 @@
+{
+  "extends": [
+    "plugin:vue/essential",
+    "standard"
+  ],
+  "parserOptions": {
+    "parser": "babel-eslint"
+  },
+  "rules": {
+    "semi": ["error", "always"], // 代码必须以分号结束
+    "no-tabs": "off"
+  },
+  "globals": {
+    "NODE_ENV": "readonly",
+    "MODE": "readonly",
+    "VERSION": "readonly"
+  }
+}
