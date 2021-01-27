@@ -11,7 +11,6 @@ const mainRenderConfig = require('./webpack.main.config');
 const electronBuilder = require('electron-builder');
 const packageJson = require('../package.json');
 // const { v4: uuidv4 } = require('uuid');
-const archiver = require('archiver');
 // 设置 app 一些选项
 // 打包渲染进程
 // 压缩渲染进程
@@ -57,31 +56,9 @@ const build = {
     // packageJson.build.nsis.guid = uuidv4();
     fs.writeFileSync(path.join(__dirname, '../package.json'), JSON.stringify(packageJson, null, 4));
   },
-  // 创建文件夹，如果文件夹已存在则什么都不做
-  async createFolder (outputPath) {
-    return new Promise(resolve => {
-      fs.stat(outputPath, exists => {
-        if (exists) fs.mkdirSync(outputPath);
-        resolve(1);
-      });
-    });
-  },
   buildApp () {
     this.viewBuilder().then(async () => {
-      const outputPath = path.join(__dirname, '../pack/');
-      // 创建一个pack目录
-      await this.createFolder(outputPath);
-      const zipPath = renderConfig.output.path;
-      const fileName = this.setup.versionType + '-' + this.setup.version.join('.');
-      const filePath = path.join(zipPath, `../pack/${fileName}.zip`);
-      this.compress(zipPath, filePath, 7, (type, msg) => {
-        if (type === 'error') {
-          return Promise.reject('压缩文件出错：' + msg);
-        } else {
-          this.packMain();
-          console.log(`压缩包大小为：${(msg / 1024 / 1024).toFixed(2)}MB`);
-        }
-      });
+      this.packMain();
     }).catch(err => {
       console.log(err);
       process.exit(1);
@@ -96,22 +73,6 @@ const build = {
       console.log(err);
       process.exit(2);
     });
-  },
-  compress (filePath, zipPath, level = 9, callback) {
-    const fileStream = fs.createWriteStream(zipPath);
-    const archive = archiver('zip', {
-      zlib: { level }
-    });
-    archive.pipe(fileStream);
-    archive.directory(filePath, false);
-    archive.on('error', err => {
-      if (callback) callback('error', err);
-    });
-    fileStream.on('close', () => {
-      const size = archive.pointer();
-      if (callback) callback('success', size);
-    });
-    archive.finalize();
   },
   // 打开文件管理器
   openExplorer () {

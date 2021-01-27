@@ -86,7 +86,7 @@
         }
     ],
     "build": {
-        "asar": false,
+        "asar": true,
         "productName": "electron-vue",
         "appId": "com.mutou.app",
         "copyright": "Copyright © year motou",
