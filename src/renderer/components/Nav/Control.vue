@@ -1,15 +1,38 @@
 <template>
 <div class="control no-drag">
-  <div class="min"></div>
-  <div class="max"></div>
-  <div class="close"><Icon type="ios-close" size="24" /></div>
+  <div
+      class="min"
+      @mousemove="addClassName($event)"
+      @mouseleave="removeClassName($event)"
+      @click="minimize($event)">
+    <Icon type="ios-remove" size="24" color="#aaa" />
+  </div>
+  <div
+      class="max"
+      @mousemove="addClassName($event)"
+      @mouseleave="removeClassName($event)">
+    <Icon type="ios-square-outline" size="14" color="#000" />
+  </div>
+  <div class="close"><Icon class="ios-close" type="ios-close" size="24" /></div>
 </div>
 </template>
 
 <script>
 export default {
-  name: "Control"
-}
+  name: 'Control',
+  methods: {
+    addClassName (ele) {
+      ele.currentTarget.classList.add('hover-color');
+    },
+    removeClassName (ele) {
+      ele.currentTarget.classList.remove('hover-color');
+    },
+    minimize (ele) {
+      this.removeClassName(ele);
+      this.$ev.minimizeMainWin();
+    }
+  }
+};
 </script>
 
 <style scoped lang="sass">
@@ -26,6 +49,10 @@ export default {
     align-items: center
     justify-content: center
     cursor: pointer
-    &:hover
-      background-color: #eeeeee
+  .close:hover
+    background-color: red
+    .ios-close
+      color: #fff
+  .hover-color
+    background-color: #eee
 </style>

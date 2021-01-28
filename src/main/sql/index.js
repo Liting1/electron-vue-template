@@ -29,7 +29,7 @@ class Db extends Table {
         }
         // 存在则判断该文件是否存在
         fs.stat(this.options.database, async err => {
-          if (err && err.code == 'ENOENT') {
+          if (err && err.code === 'ENOENT') {
             // 如果本地不存在该数据库则初始化
             const SQL = await initSqlJs();
             this.db = new SQL.Database();

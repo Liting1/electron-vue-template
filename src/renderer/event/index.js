@@ -26,5 +26,9 @@ export default {
   // 安装应用
   isUpdateNow () {
     ipcRenderer.send('isUpdateNow');
+  },
+  // 主窗口最小化
+  minimizeMainWin () {
+    ipcRenderer.send('win-minimize');
   }
 };

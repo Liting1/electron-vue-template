@@ -87,4 +87,6 @@ class App {
     this.win = null;
   }
 }
+
+// eslint-disable-next-line no-unused-vars
 const app = new App(electron);

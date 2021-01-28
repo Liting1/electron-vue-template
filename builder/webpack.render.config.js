@@ -8,7 +8,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { params } = require('./common.config');
 const { version } = require('../config/version');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const ESLintPlugin = require('eslint-webpack-plugin');
 // const StyleLintPlugin = require('stylelint-webpack-plugin');
 
@@ -19,7 +19,7 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, '../app/'),
-    publicPath: isDevMode ? '/' : '',
+    publicPath: isDevMode ? '/' : './',
     filename: 'js/[name].[contenthash].js',
     chunkFilename: 'js/[name].bundle.js'
   },
@@ -33,7 +33,10 @@ module.exports = {
         ...(
           isDevMode
             ? ['vue-style-loader', 'style-loader']
-            : [MiniCssExtractPlugin.loader]
+            : [{
+                loader: MiniCssExtractPlugin.loader,
+                options: { publicPath: "../" }
+              }]
         ),
         'css-loader',
         {
@@ -51,15 +54,17 @@ module.exports = {
         ...(
           isDevMode
             ? ['vue-style-loader', 'style-loader']
-            : [MiniCssExtractPlugin.loader]
+            : [{
+                loader: MiniCssExtractPlugin.loader,
+                options: { publicPath: "../" }
+              }]
         ),
         'css-loader'
       ]
     }, { // 配置Babel将ES6+ 转换为ES5
       test: /\.js(\?.*)?$/,
       exclude: file => ( // 排除node_modules文件夹
-        /node_modules/.test(file) &&
-				!/\.vue\.js/.test(file)
+        /node_modules/.test(file) && !/\.vue\.js/.test(file)
       ),
       use: {
         loader: 'babel-loader',
@@ -74,7 +79,8 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          esModule: false
+          esModule: false,
+          name: 'images/[name].[hash].[ext]'
         }
       }
     }, { // 配置字体文件加载
@@ -83,7 +89,8 @@ module.exports = {
         loader: 'file-loader',
         options: {
           esModule: false,
-          limit: 10000
+          limit: 10000,
+          name: 'fonts/[name].[hash].[ext]'
         }
       }
     }, { // 处理node文件
@@ -110,7 +117,7 @@ module.exports = {
     }),
     new ESLintPlugin({
       extensions: ['js', 'vue'],
-      emitWarning: true,
+      emitWarning: true
     }),
     // new StyleLintPlugin({
     //   		files: ['**/*.{html,vue,css,sass,scss}'],
@@ -118,7 +125,7 @@ module.exports = {
     new HtmlWebpackPlugin({		// HTML页面模板插件
       template: path.join(__dirname, '../src/renderer/index.html'),
       filename: 'index.html',
-      hash: true
+      hash: true,
     }),
     new MiniCssExtractPlugin({	// css打包成css文件插件
       filename: 'css/[name].css',

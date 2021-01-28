@@ -1,5 +1,6 @@
 <template>
 <div class="home">
+  <Header/>
 	<Button @click="openInitiate">打开一个新的窗口-窗口链接地址是服务器</Button>
 	<Button @click="openView">打开一个新的窗口-窗口地址是本地文件</Button>
 	<Button @click="notice">显示通知</Button>
@@ -14,6 +15,7 @@
 
 <script>
 import axios from 'axios';
+import Header from '../components/head';
 export default {
   name: 'Home',
   data () {
@@ -21,14 +23,17 @@ export default {
       txt: 'hello electron1'
     };
   },
+  components: {
+    Header
+  },
   methods: {
     sendGet () {
       axios.get('/api/user?ID=12345')
         .then(function (response) {
-			    console.log(response);
+          console.log(response);
         })
         .catch(function (error) {
-			    console.log(error);
+          console.log(error);
         });
     },
     checkUpdate () {
@@ -41,7 +46,7 @@ export default {
       this.$ev.openViewWin();
     },
     alert () {
-		  console.log(this.$env);
+      console.log(this.$env);
     },
     update () {
       this.$ev.installationProgram();
@@ -59,7 +64,7 @@ export default {
         body: '通知的主体内容'
       });
       myNotification.onclick = () => {
-			  console.log('Notification clicked');
+        console.log('Notification clicked');
       };
     }
   }
