@@ -1,8 +1,8 @@
-const { app, Tray, Menu } = require('electron');
-const path = require('path');
-const { getWin } = require('../utils');
+import { app, Tray, Menu } from 'electron';
+import path from 'path';
+import { getWin } from '../utils';
 
-module.exports = class {
+export default class {
   constructor () {
     this.tray = null;
     this.win = getWin('mainWin');

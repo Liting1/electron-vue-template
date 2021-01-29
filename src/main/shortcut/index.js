@@ -1,6 +1,6 @@
 // 注册快捷键
-const { app, globalShortcut } = require('electron');
-const { getWin } = require('../utils');
+import { app, globalShortcut } from 'electron';
+import { getWin } from '../utils';
 class Shortcut {
   constructor () {
     this.win = null; // 主窗口
@@ -35,4 +35,4 @@ app.on('will-quit', () => {
   globalShortcut.unregisterAll();
 });
 
-module.exports = new Shortcut();
+export default new Shortcut();

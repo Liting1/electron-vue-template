@@ -1,4 +1,4 @@
-const { ipcMain } = require('electron');
+import { ipcMain } from 'electron';
 
 class MainWinEvent {
   init (win) {
@@ -14,6 +14,4 @@ class MainWinEvent {
   }
 }
 
-const mainWinEvent = new MainWinEvent();
-module.exports = mainWinEvent;
-// export default mainWinEvent;
+export default new MainWinEvent();

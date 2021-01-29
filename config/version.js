@@ -6,5 +6,5 @@ module.exports = {
     ],
     "versionType": "release",
     "versionName": "正式版",
-    "publishTime": "2021/1/27 下午3:27:57"
+    "publishTime": "2021/1/29 上午9:51:40"
 }

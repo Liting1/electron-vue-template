@@ -6,16 +6,13 @@
  * @Description: 主线程注册事件
  * @FilePath: \electron-vue-template\src\main\registerEvent\index.js
  */
-const mainWinEvent = require('./mainWinEvent');
-// import mainWinEvent from './mainWinEvent';
-
-const { app, ipcMain } = require('electron');
-const { createInitiateWin, createViewWin } = require('../createWindow');
-const path = require('path');
-const url = require('url');
-const updateHandle = require('./update');
-const { getWin } = require('../utils');
-
+import path from 'path';
+import url from 'url';
+import { app, ipcMain } from 'electron';
+import mainWinEvent from './mainWinEvent';
+import { createInitiateWin, createViewWin } from '../createWindow';
+import updateHandle from './update';
+import { getWin } from '../utils';
 
 class RegisterEvent {
   constructor () {
@@ -80,4 +77,4 @@ app.on('will-quit', () => {
   ipcMain.removeAllListeners();
 });
 
-module.exports = new RegisterEvent();
+export default new RegisterEvent();

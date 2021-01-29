@@ -6,8 +6,8 @@
  * @Description: 检查应用程序更新
  * @FilePath: \electron-vue-template\src\main\registerEvent\update.js
  */
-const { ipcMain } = require('electron');
-const { autoUpdater } = require('electron-updater');
+import { ipcMain } from 'electron';
+import { autoUpdater } from 'electron-updater';
 // 软件更新下载地址
 const uploadUrl = 'http://localhost/app';
 
@@ -19,8 +19,8 @@ function updateHandle (win) {
     updateNotAva: { status: 2, msg: '您现在使用的版本为最新版本,无需更新！' }
   };
 
-  const versionInfo = '';
-  const timer = null;
+  // const versionInfo = '';
+  // const timer = null;
   // 设置更新地址
   autoUpdater.setFeedURL(uploadUrl);
 
@@ -76,4 +76,4 @@ function updateHandle (win) {
   }
 }
 
-module.exports = updateHandle;
+export default updateHandle;

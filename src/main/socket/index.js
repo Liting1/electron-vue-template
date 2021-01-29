@@ -7,8 +7,8 @@
  * @FilePath: \electron-vue-template\src\main\socket\index.js
  */
 
-const WebSocket = require('ws');
-const os = require('os');
+import WebSocket from 'ws';
+import os from 'os';
 
 class CreateSocket {
   constructor () {
@@ -18,23 +18,23 @@ class CreateSocket {
   init () {
     this.createSocket();
     this.addEventListen();
-    console.log('socketServer:' + this.getIPAdress() + ':8089');
+    console.log('socketServer:' + this.getIPAddress() + ':8089');
   }
 
   createSocket () {
     this.wss = new WebSocket.Server({
-      host: this.getIPAdress(),
+      host: this.getIPAddress(),
       port: 8089
     });
   }
 
   // 获取电脑ip
-  getIPAdress () {
+  getIPAddress () {
     const interfaces = os.networkInterfaces();
     for (const devName in interfaces) {
-      const iface = interfaces[devName];
-      for (let i = 0; i < iface.length; i++) {
-        const alias = iface[i];
+      const facie = interfaces[devName];
+      for (let i = 0; i < facie.length; i++) {
+        const alias = facie[i];
         if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
           return alias.address;
         }
@@ -45,7 +45,7 @@ class CreateSocket {
   // 进行广播函数
   broadcast (data) {
     this.wss.clients.forEach(client => {
-      if (client.readyState == WebSocket.OPEN) {
+      if (client.readyState === WebSocket.OPEN) {
         client.send(data);
       }
     });
@@ -74,4 +74,4 @@ class CreateSocket {
   }
 }
 
-module.exports = new CreateSocket();
+export default new CreateSocket();

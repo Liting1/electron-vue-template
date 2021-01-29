@@ -27,7 +27,6 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, '../app/'),
-    libraryTarget: 'commonjs2',
     filename: '[name].js'
   },
   watch: isDevMode,

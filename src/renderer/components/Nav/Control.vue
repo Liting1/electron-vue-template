@@ -53,4 +53,6 @@ export default {
     background-color: red
     .ios-close
       color: #fff
+  .hover-color
+    background-color: #eee
 </style>

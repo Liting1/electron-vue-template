@@ -1,7 +1,7 @@
-const { BrowserWindow } = require('electron');
+import { BrowserWindow } from 'electron';
 
-module.exports = {
-  getWin (title) {
-    return BrowserWindow.getAllWindows().filter(wins => wins.title == title)[0];
-  }
-};
+const getWin = title => (
+  BrowserWindow.getAllWindows().filter(wins => wins.title === title)[0]
+);
+
+export { getWin };
