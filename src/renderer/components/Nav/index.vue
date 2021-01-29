@@ -1,7 +1,7 @@
 <template>
 <div class="nav-container drag">
   <span><Icon type="ios-checkmark" /></span>
-  <span>88888</span>
+  <span>99999</span>
 
   <Control />
 </div>

@@ -1,5 +1,5 @@
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer';
-
+import { app } from 'electron';
 class Plugin {
   installPlugin () {
     this.vueDevtools();
@@ -7,9 +7,11 @@ class Plugin {
 
   // vue 开发插件
   vueDevtools () {
-    installExtension(VUEJS_DEVTOOLS)
-      .then((name) => console.log(`添加扩展:  ${name}`))
-      .catch((err) => console.log('An error occurred: ', err));
+    app.whenReady().then(() => {
+      installExtension(VUEJS_DEVTOOLS)
+        .then((name) => console.log(`添加扩展:  ${name}`))
+        .catch((err) => console.log('An error occurred: ', err));
+    });
   }
 }
 export default new Plugin();

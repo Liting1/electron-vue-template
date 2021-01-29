@@ -1,0 +1,45 @@
+const { webpackCommonConfig, isDevMode } = require('./common.config.js');
+const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
+const { merge } = require('webpack-merge');
+const { dependencies } = require('../package.json');
+const ElectronDevWebpackPlugin = require('electron-dev-webpack-plugin');
+
+const plugins = [
+    new CopyPlugin({ // 复制 sqlite数据库所需二进制文件
+        patterns: [{
+            from: './node_modules/sql.js/dist/sql-wasm.wasm'
+        }]
+    })
+];
+
+if (isDevMode) {
+    plugins.push(new ElectronDevWebpackPlugin()); // 开发热加载electron应用
+}
+
+module.exports = merge(webpackCommonConfig, {
+    entry: {
+        main: [path.join(__dirname, '../src/main/main.js')]
+    },
+    output: {
+        path: path.join(__dirname, '../app/'),
+        filename: '[name].js'
+    },
+    watch: isDevMode,
+    optimization: {
+        minimize: true
+    },
+    module: {
+        rules: [{
+            test: /\.js$/,
+            loader: 'babel-loader',
+            exclude: /node_modules/
+        }],
+        noParse: /sql.js/ // webpack 过滤掉对sql.js 模块的处理
+    },
+    externals: [
+        ...Object.keys(dependencies || {})
+    ],
+    plugins,
+    target: 'electron-main',
+})
