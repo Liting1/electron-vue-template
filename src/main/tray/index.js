@@ -1,6 +1,6 @@
-import { app, Tray, Menu } from 'electron';
+import { app, Tray, Menu, nativeImage } from 'electron';
 import path from 'path';
-import { getWin } from '../utils';
+import { getWin, log } from '../utils';
 
 export default class {
   constructor () {
@@ -12,22 +12,39 @@ export default class {
   init () {
     // Menu.setApplicationMenu(null);  // 清除默认的顶部菜单
     app.whenReady().then(() => {
-      this.tray = new Tray(path.join(__dirname, './icon/icon.png'));
-      this.addEventListen();
+      const imgPath = NODE_ENV === 'development'
+        ? path.join(__dirname, '../../static/img/icon.jpg')
+        : path.join(__dirname, './static/img/icon.jpg');
+
+      const image = nativeImage.createFromPath(imgPath);
+      this.tray = new Tray(image);
       const contextMenu = Menu.buildFromTemplate([
         { label: 'Item1', type: 'normal' },
         { label: 'Item2', type: 'normal' },
         { label: 'Item3', type: 'normal' },
-        { label: '退出', type: 'normal', role: 'quit' }
+        {
+          label: '退出',
+          type: 'normal',
+          click: () => {
+            app.exit();
+            app.quit();
+            app.quit();
+          }
+        }
       ]);
 
       this.tray.setToolTip('木头人');
       this.tray.setContextMenu(contextMenu);
+      this.addEventListen();
     });
   }
 
   addEventListen () {
     this.tray.on('click', () => this.handleClick());
+  }
+
+  destroy () {
+    this.tray.destroy();
   }
 
   // 处理图片点击事件

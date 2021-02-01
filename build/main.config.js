@@ -32,8 +32,15 @@ module.exports = merge(webpackCommonConfig, {
     module: {
         rules: [{
             test: /\.js$/,
-            loader: 'babel-loader',
-            exclude: /node_modules/
+            exclude: /node_modules/,
+            use: {
+                loader: 'babel-loader',
+                options: {
+                    presets: ['@babel/preset-env'],
+                    plugins: ['@babel/plugin-transform-runtime','@babel/plugin-proposal-class-properties']
+                }
+            }
+
         }],
         noParse: /sql.js/ // webpack 过滤掉对sql.js 模块的处理
     },

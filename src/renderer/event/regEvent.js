@@ -4,7 +4,7 @@
  * @LastEditTime: 2020-12-27 12:19:02
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
- * @FilePath: \electron-vue-template\src\renderer\event\regevent.js
+ * @FilePath: \electron-vue-template\src\renderer\event\regEvent.js
  */
 
 import { ipcRenderer } from 'electron';
@@ -13,7 +13,8 @@ class RegisterEvent {
   init () {
     this.regEvent({
       'update-message': this.messageEvent,
-      'download-progress': this.downloadProgress
+      'download-progress': this.downloadProgress,
+      'win-log': this.log
     });
   }
 
@@ -30,6 +31,11 @@ class RegisterEvent {
 
   downloadProgress (event, progress) {
     console.log('文件下载进度：', progress);
+  }
+
+  // 用于打包后调试主程序
+  log (...arg) {
+    console.log(...arg);
   }
 }
 
