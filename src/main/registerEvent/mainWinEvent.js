@@ -12,6 +12,13 @@ class MainWinEvent {
       this.win.minimize();
     });
   }
+
+  // 关闭窗口
+  closeWin () {
+    ipcMain('win-close', () => {
+      this.win.hide();
+    });
+  }
 }
 
 export default new MainWinEvent();

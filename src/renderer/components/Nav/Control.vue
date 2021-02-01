@@ -13,7 +13,7 @@
       @mouseleave="removeClassName($event)">
     <Icon type="ios-square-outline" size="14" color="#000" />
   </div>
-  <div class="close"><Icon class="ios-close" type="ios-close" size="24" /></div>
+  <div class="close" @click="handleClose"><Icon class="ios-close" type="ios-close" size="24" /></div>
 </div>
 </template>
 
@@ -26,6 +26,9 @@ export default {
     },
     removeClassName (ele) {
       ele.currentTarget.classList.remove('hover-color');
+    },
+    handleClose(){
+      this.$ev.closeWin();
     },
     minimize (ele) {
       this.removeClassName(ele);

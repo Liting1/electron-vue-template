@@ -30,5 +30,9 @@ export default {
   // 主窗口最小化
   minimizeMainWin () {
     ipcRenderer.send('win-minimize');
+  },
+  // 隐藏窗口
+  closeWin(){
+    ipcRenderer.send('win-close');
   }
 };

@@ -81,7 +81,7 @@ class App {
     registerEvent.init();			// 注册事件
     shortcut.init();				// 设置快捷键
     // createSocket.init();			// 创建socket
-    // plugins.installPlugin();		// 安装插件
+    plugins.installPlugin();		// 安装插件
   }
 
   closed () {
