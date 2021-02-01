@@ -25,6 +25,7 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.12.3",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/plugin-transform-runtime": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
     "babel-eslint": "^10.1.0",
@@ -39,8 +40,6 @@
     "electron": "^11.2.0",
     "electron-builder": "^22.9.1",
     "electron-dev-webpack-plugin": "^1.0.5",
-    "electron-devtools-installer": "^3.1.1",
-    "electron-updater": "^4.3.5",
     "eslint": "^7.18.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.22.1",
@@ -55,7 +54,6 @@
     "node-loader": "^1.0.2",
     "node-sass": "^4.14.1",
     "sass-loader": "^10.0.4",
-    "sql.js": "^1.4.0",
     "style-loader": "^2.0.0",
     "stylelint": "^13.9.0",
     "stylelint-webpack-plugin": "^2.1.1",
@@ -69,6 +67,8 @@
     "webpack-cli": "^4.1.0",
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^5.7.3",
+    "sql.js": "^1.4.0",
+    "electron-updater": "^4.3.5",
     "ws": "^7.4.1"
   },
   "dependencies": {
@@ -107,7 +107,7 @@
       "artifactName": "${productName}.${ext}"
     },
     "win": {
-      "icon": "./icon.jpg",
+      "icon": "./src/static/img/icon.jpg",
       "target": [
         {
           "target": "nsis",

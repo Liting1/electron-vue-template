@@ -11,7 +11,7 @@ import App from './App.vue';
 import store from './store';
 import router from './router';
 import ipcRenderHandle from './event';
-import regEvent from './event/regevent';
+import regEvent from './event/regEvent';
 import 'view-design/dist/styles/iview.css';
 import {
   Button,

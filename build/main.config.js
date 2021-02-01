@@ -4,8 +4,10 @@ const CopyPlugin = require('copy-webpack-plugin');
 const { merge } = require('webpack-merge');
 const { dependencies } = require('../package.json');
 const ElectronDevWebpackPlugin = require('electron-dev-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const plugins = [
+    new BundleAnalyzerPlugin({ analyzerPort: 8888 }), // chunks 分析插件
     new CopyPlugin({ // 复制 sqlite数据库所需二进制文件
         patterns: [{
             from: './node_modules/sql.js/dist/sql-wasm.wasm'
@@ -32,8 +34,15 @@ module.exports = merge(webpackCommonConfig, {
     module: {
         rules: [{
             test: /\.js$/,
-            loader: 'babel-loader',
-            exclude: /node_modules/
+            exclude: /node_modules/,
+            use: {
+                loader: 'babel-loader',
+                options: {
+                    presets: ['@babel/preset-env'],
+                    plugins: ['@babel/plugin-transform-runtime','@babel/plugin-proposal-class-properties']
+                }
+            }
+
         }],
         noParse: /sql.js/ // webpack 过滤掉对sql.js 模块的处理
     },

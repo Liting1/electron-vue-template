@@ -4,6 +4,8 @@ class MainWinEvent {
   init (win) {
     this.win = win;
     this.minimize();
+    this.close();
+    this.winClose();
   }
 
   // 窗口最小化
@@ -14,8 +16,15 @@ class MainWinEvent {
   }
 
   // 关闭窗口
-  closeWin () {
-    ipcMain('win-close', () => {
+  winClose () {
+    ipcMain.on('win-close', () => {
+      this.win.hide();
+    });
+  }
+
+  close () {
+    this.win.on('close', (e) => {
+      e.preventDefault();
       this.win.hide();
     });
   }

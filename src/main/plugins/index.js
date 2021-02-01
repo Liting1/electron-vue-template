@@ -1,5 +1,4 @@
 import { app, session } from 'electron';
-import url from 'url';
 import path from 'path';
 class Plugin {
   installPlugin () {

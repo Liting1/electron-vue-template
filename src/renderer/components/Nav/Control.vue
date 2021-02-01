@@ -27,7 +27,7 @@ export default {
     removeClassName (ele) {
       ele.currentTarget.classList.remove('hover-color');
     },
-    handleClose(){
+    handleClose () {
       this.$ev.closeWin();
     },
     minimize (ele) {

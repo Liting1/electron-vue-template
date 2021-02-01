@@ -1,7 +1,7 @@
 const chalk = require('chalk');
 const del = require('del');
 const path = require('path');
-const { isDevMode } = require('./common.config.js');
+const { isDevMode, params } = require('./common.config.js');
 const webpackMainConfig = require('./main.config.js');
 const webpack = require('webpack');
 const webpackRenderConfig = require('./renderer.config.js');
@@ -64,9 +64,17 @@ function developmentBuild() {
         console.log(err);
     })
 }
-
-function writeVersionConfig(){
-
+// 打包前配置
+function writeVersionConfig() {
+    const runTimeObj = {
+        dev: '开发版',
+        test: '测试版',
+        pro: '生产版',
+        exp: '体验版'
+    }
+    let name = runTimeObj[params.MODE];  // 打包环境
+    let publishTime = new Date().toLocaleString(); // 打包时间
+    console.log(chalk.black.bgYellow('当前环境为：') + chalk.yellow.bgRed.bold(name));
 }
 
 function productionBuild() {

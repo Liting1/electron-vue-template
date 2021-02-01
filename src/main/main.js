@@ -24,7 +24,6 @@ class App {
     this.app = app;
     this.BrowserWindow = BrowserWindow;
     this.win = null;
-    this.tray = null;
     this.runCheck();
     this.eventHandle(app);
   }
@@ -71,13 +70,15 @@ class App {
   }
 
   windowAllClosed () {
-    if (process.platform !== 'darwin') this.app.quit();
+    if (process.platform !== 'darwin') {
+      this.app.quit();
+    }
   }
 
   async ready () {
     await sqlite.initDatabase();	// 初始化数据库
-    this.tray = new Tray();			// 创建应用托盘
     this.createWindow(); 			// 创建主窗口
+    this.tray = new Tray();			// 创建应用托盘
     registerEvent.init();			// 注册事件
     shortcut.init();				// 设置快捷键
     // createSocket.init();			// 创建socket

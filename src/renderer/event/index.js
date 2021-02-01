@@ -32,7 +32,7 @@ export default {
     ipcRenderer.send('win-minimize');
   },
   // 隐藏窗口
-  closeWin(){
+  closeWin () {
     ipcRenderer.send('win-close');
   }
 };
