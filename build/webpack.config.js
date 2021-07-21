@@ -88,9 +88,23 @@ function productionBuild() {
     })
 }
 
+function packagerBuild() {
+    del(['./app/*', './pack/*']);
+    writeVersionConfig();
+    Promise.all([buildMain(), buildRender()]).then(res => {
+        res.forEach(item => console.log(item));
+    }).catch(err => {
+        console.log(err);
+    })
+}
+
 // 打包开发版
 if (isDevMode) {
     developmentBuild();
 } else {
-    productionBuild();
+    if(params.packagerBuild) {
+        packagerBuild();
+    } else {
+        productionBuild();
+    }
 }

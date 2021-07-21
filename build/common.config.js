@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-07-21 21:56:04
+ * @LastEditTime: 2021-07-21 23:26:50
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \electron-vue-template\build\common.config.js
+ */
 const webpack = require('webpack');
 const { version } = require('../config/version');
 
