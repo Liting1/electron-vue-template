@@ -1,12 +1,11 @@
 
-
-
 ### 使用
 
 1. `git clone https://github.com/Liting1/electron-vue-template.git`
 2. `npm install`
 3. `npm run dev` 开发
-4. `npm run build` 生产打包
+4. `npm run build` 使用 electron-builder 打包生产
+5. `npm run packager-build` 使用 electron-packager 打包生产
 
 
 ### 常见问题
