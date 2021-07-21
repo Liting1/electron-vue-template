@@ -1,6 +1,5 @@
 <template>
 <div class="home">
-<!--  <Header/>-->
 	<Button @click="openInitiate">打开一个新的窗口-窗口链接地址是服务器</Button>
 	<Button @click="openView">打开一个新的窗口-窗口地址是本地文件</Button>
 	<Button @click="notice">显示通知</Button>
@@ -9,32 +8,44 @@
 	<Button @click="alert">查看当前应用版本</Button>
 	<Button @click="update">安装程序</Button>
 	<hr>
-	<Button @click="sendGet">发送get请求</Button>
+  <Modal v-model="visible" @on-ok="handleOk">
+    <UpdateModal :modal-data="updateMessage" ref="modal"/>
+  </Modal>
 </div>
 </template>
 
 <script>
-import axios from 'axios';
-// import Header from '../components/head';
+// import axios from 'axios';
+import UpdateModal from '../components/UpdateModal';
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'Home',
   data () {
     return {
+      visible: false,
       txt: 'hello electron1'
     };
   },
   components: {
-    // Header
+    UpdateModal
+  },
+  computed: {
+    ...mapGetters({ updateMessage: 'getUpdateMessage' })
+  },
+  watch: {
+    updateMessage: {
+      handler (msg) {
+        if (msg.mode === 101 || msg.mode === 102 || msg.mode === 103) {
+          this.visible = true;
+        }
+      },
+      deep: true
+    }
   },
   methods: {
-    sendGet () {
-      axios.get('/api/user?ID=12345')
-        .then(function (response) {
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+    handleOk () {
+      this.$refs.modal.handleOk();
     },
     checkUpdate () {
       this.$ev.checkUpdate();
@@ -64,7 +75,7 @@ export default {
         body: '通知的主体内容'
       });
       myNotification.onclick = () => {
-        console.log('Notification clicked');
+        console.log('is click notification');
       };
     }
   }

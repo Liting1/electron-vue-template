@@ -1,3 +1,4 @@
 export default {
-  getUserInfo: state => state.userInfo
+  getUserInfo: state => state.userInfo,
+  getUpdateMessage: state => state.updateMessage
 };

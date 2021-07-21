@@ -7,13 +7,14 @@
  * @FilePath: \electron-vue-template\src\main\createWindow\index.js
  */
 import { BrowserWindow } from 'electron';
-
+import path from 'path';
 const createMainWin = (options = {}) => {
   options = Object.assign({
     title: 'mainWin',
     width: 1200,				// 窗口宽度
     height: 800,				// 窗口高度
     frame: false,
+    icon: path.join(__dirname, '../../static/img/icon.jpg'),
     backgroundColor: '#fff',	// 窗口背景颜色
     show: false,				// 创建窗口后不显示窗口
     hasShadow: false,

@@ -6,12 +6,24 @@ class MainWinEvent {
     this.minimize();
     this.close();
     this.winClose();
+    this.maximize();
   }
 
   // 窗口最小化
   minimize () {
     ipcMain.on('win-minimize', () => {
       this.win.minimize();
+    });
+  }
+
+  // 窗口最大化
+  maximize () {
+    ipcMain.on('win-maximize', () => {
+      if (this.win.isMaximized()) {
+        this.win.unmaximize();
+      } else {
+        this.win.maximize();
+      }
     });
   }
 

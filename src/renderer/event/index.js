@@ -19,6 +19,10 @@ export default {
   checkUpdate () {
     ipcRenderer.send('check-update');
   },
+  // 下载应用程序
+  downloadApp () {
+    ipcRenderer.send('download-app');
+  },
   // 下载完毕安装最新版程序
   installationProgram () {
     ipcRenderer.send('isUpdateNow');
@@ -30,6 +34,10 @@ export default {
   // 主窗口最小化
   minimizeMainWin () {
     ipcRenderer.send('win-minimize');
+  },
+  // 主窗口最大化
+  maximizeMainWin () {
+    ipcRenderer.send('win-maximize');
   },
   // 隐藏窗口
   closeWin () {

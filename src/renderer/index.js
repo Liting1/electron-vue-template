@@ -16,16 +16,16 @@ import 'view-design/dist/styles/iview.css';
 import {
   Button,
   Table,
-  Icon
+  Icon,
+  Modal
 } from 'view-design';
 Vue.component('Button', Button);
 Vue.component('Table', Table);
 Vue.component('Icon', Icon);
+Vue.component('Modal', Modal);
 
 // 触发主进程的自定义事件
 Vue.prototype.$ev = ipcRenderHandle;
-// 注册渲染进程事件
-regEvent.init();
 
 // 定义环境变量, 由webpack 配置定义
 Vue.prototype.$env = {
@@ -34,8 +34,11 @@ Vue.prototype.$env = {
   VERSION // 当前版本
 };
 
-new Vue({
+const app = new Vue({
   store,
   router,
   render: h => h(App)
 }).$mount('#app');
+
+// 注册渲染进程事件
+regEvent.init(app);

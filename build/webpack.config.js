@@ -14,9 +14,8 @@ function buildMain() {
     return new Promise((resolve, reject) => {
         webpack(webpackMainConfig, err => {
             err
-                ?
-                reject(chalk.red('打包主进程错误:' + err)) :
-                resolve(chalk.green('打包主进程完毕！'));
+            ? reject(chalk.red('打包主进程错误:' + err))
+            : resolve(chalk.green('打包主进程完毕！'));
         });
     });
 }
@@ -37,9 +36,8 @@ function buildRender() {
         } else {
             compiler.run(err => {
                 err
-                    ?
-                    reject(chalk.red('打包渲染进程错误:' + err)) :
-                    resolve(chalk.green('打包渲染进程完毕！'));
+                ? reject(chalk.red('打包渲染进程错误:' + err))
+                : resolve(chalk.green('打包渲染进程完毕！'));
             })
         }
     })

@@ -1,7 +1,7 @@
 {
-  "name": "electron-vue",
-  "version": "3.7.7",
-  "description": "template",
+  "name": "electron-vue-cli",
+  "version": "1.0.1",
+  "description": "electron + vue + template 快速开发",
   "main": "./app/main.js",
   "scripts": {
     "dev": "node ./build/webpack.config.js MODE=dev NODE_ENV=development",

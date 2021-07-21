@@ -1,6 +1,6 @@
-import { app, Tray, Menu, nativeImage } from 'electron';
+import { app, Tray, Menu, nativeImage, shell } from 'electron';
 import path from 'path';
-import { getWin, log } from '../utils';
+import { getWin } from '../utils';
 
 export default class {
   constructor () {
@@ -18,21 +18,21 @@ export default class {
 
       const image = nativeImage.createFromPath(imgPath);
       this.tray = new Tray(image);
-      const contextMenu = Menu.buildFromTemplate([
-        { label: 'Item1', type: 'normal' },
-        { label: 'Item2', type: 'normal' },
-        { label: 'Item3', type: 'normal' },
-        {
-          label: '退出',
-          type: 'normal',
-          click: () => {
-            app.exit();
-            app.quit();
-            app.quit();
-          }
+      const contextMenu = Menu.buildFromTemplate([{
+        label: '打开托盘文档',
+        type: 'normal',
+        click () {
+          shell.openPath('https://www.electronjs.org/docs/api/tray');
         }
-      ]);
-
+      }, {
+        label: '退出',
+        type: 'normal',
+        click () {
+          app.exit();
+          app.quit();
+          app.quit();
+        }
+      }]);
       this.tray.setToolTip('木头人');
       this.tray.setContextMenu(contextMenu);
       this.addEventListen();

@@ -10,9 +10,15 @@
 import { ipcRenderer } from 'electron';
 // 在渲染进程监听 --- 主线程触发的事件
 class RegisterEvent {
-  init () {
+  constructor () {
+    // 存储应用实例对象
+    this.app = null;
+  }
+
+  init (app) {
+    this.app = app;
     this.regEvent({
-      'update-message': this.messageEvent,
+      'update-message': (e, msg) => this.messageEvent(msg),
       'download-progress': this.downloadProgress,
       'win-log': this.log
     });
@@ -24,9 +30,9 @@ class RegisterEvent {
     }
   }
 
-  // 检查跟新
-  messageEvent (event, text) {
-    console.log('检查更新：', text);
+  // 检查应用更新
+  messageEvent (msg) {
+    this.app.$store.commit('setUpdateMessage', msg);
   }
 
   downloadProgress (event, progress) {

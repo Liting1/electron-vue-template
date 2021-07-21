@@ -8,21 +8,42 @@
  */
 import { ipcMain } from 'electron';
 import { autoUpdater } from 'electron-updater';
-// 软件更新下载地址
-const uploadUrl = 'http://localhost/app';
 
+const updataConfig = {
+  // 软件更新下载地址
+  url: 'http://localhost/app',
+  mode: 103 // 更新方式 101->强制更新, 102->协商更新, 103->主动更新
+};
+const message = {
+  error: { status: -1, msg: '检测更新查询异常' },
+  checking: { status: 0, msg: '正在检查更新...' },
+  updateAva: { status: 1, msg: '检测到新版本,是否立即下载最新版本！' },
+  updateNotAva: { status: 2, msg: '您现在使用的版本为最新版本,无需更新！' }
+};
 function updateHandle (win) {
-  const message = {
-    error: { status: -1, msg: '检测更新查询异常' },
-    checking: { status: 0, msg: '正在检查更新...' },
-    updateAva: { status: 1, msg: '检测到新版本,正在下载,请稍后' },
-    updateNotAva: { status: 2, msg: '您现在使用的版本为最新版本,无需更新！' }
-  };
-
-  // const versionInfo = '';
-  // const timer = null;
   // 设置更新地址
-  autoUpdater.setFeedURL(uploadUrl);
+  autoUpdater.setFeedURL(updataConfig.url);
+  let timer = null;
+  // 强制更新
+  if (updataConfig.mode === 101 || updataConfig.mode === 102) {
+    // 应用程序启动后5s__执更新检查
+    timer = setTimeout(() => {
+      autoUpdater.checkForUpdates();
+      clearTimeout(timer);
+    }, 5000);
+  }
+
+  if (updataConfig.mode === 102 || updataConfig.mode === 103) { // 协商更新
+    autoUpdater.autoDownload = false;
+    // 下载新版本
+    ipcMain.on('download-app', () => {
+      autoUpdater.downloadUpdate();
+    });
+    // 主动更新,手动执行自动更新检查
+    ipcMain.on('check-update', () => {
+      autoUpdater.checkForUpdates();
+    });
+  }
 
   // 更新出错出
   autoUpdater.on('error', function (err) {
@@ -57,22 +78,11 @@ function updateHandle (win) {
       autoUpdater.quitAndInstall();
     });
 
-    // win.webContents.send('isUpdateNow');
+    win.webContents.send('isUpdateNow');
   });
 
-  // 应用程序启动后5s__执更新检查
-  // timer = setTimeout(()=>{
-  // 	autoUpdater.checkForUpdates();
-  // 	clearTimeout(timer);
-  // }, 5000);
-
-  ipcMain.on('check-update', () => {
-    console.log('手动执行自动更新检查');
-    autoUpdater.checkForUpdates();
-  });
-
-  function sendUpdateMessage (text) {
-    win.webContents.send('update-message', text);
+  function sendUpdateMessage (msg) {
+    win.webContents.send('update-message', { ...msg, ...updataConfig });
   }
 }
 
