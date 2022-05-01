@@ -1,0 +1,29 @@
+{
+  "extends": [
+    "plugin:vue/essential",
+    "standard"
+  ],
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "node": true,
+    "sourceType": "module",
+    "ecmaVersion": 2021,
+    "parser":"@typescript-eslint/parser"
+  },
+  "rules": {
+    "semi": ["error", "always"], // 代码必须以分号结束
+    "no-tabs": "off",
+    "vue/comment-directive": "off"
+  },
+  "parser": "vue-eslint-parser",
+  "plugins": ["vue","@typescript-eslint"],
+  "globals": {
+    "NODE_ENV": "readonly",
+    "MODE": "readonly",
+    "VERSION": "readonly"
+  }
+}

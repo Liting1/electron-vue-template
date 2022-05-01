@@ -1,0 +1,140 @@
+{
+  "name": "electron-vue-template",
+  "version": "2.0.6",
+  "description": "electron + vue + template 快速开发",
+  "main": "./app/main.js",
+  "scripts": {
+    "start": "ts-node scripts/devServer.ts env=dev mode=development",
+    "build": "ts-node scripts/devServer.ts env=dev mode=production",
+    "web-serve": "ts-node scripts/webServer.ts env=dev mode=development",
+    "web-build": "ts-node scripts/webServer.ts env=dev mode=production",
+    "packager-build": "ts-node scripts/packagerBuild.ts env=dev mode=production && electron-packager ./ appName --win --out ./pack",
+    "test": "node ./scripts/test.ts"
+  },
+  "keywords": [
+    "Electron",
+    "Vue",
+    "template",
+    "webpack"
+  ],
+  "author": "liting",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "@types/node": "^17.0.30",
+    "@types/webpack": "^5.28.0",
+    "@typescript-eslint/eslint-plugin": "^5.21.0",
+    "@typescript-eslint/parser": "^5.21.0",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-import": "^1.13.3",
+    "chalk": "^4.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^6.4.1",
+    "core-js": "^2.6.11",
+    "css-loader": "^5.0.0",
+    "del": "^6.0.0",
+    "electron": "^18.2.0",
+    "electron-builder": "^23.0.3",
+    "electron-dev-webpack-plugin": "^1.0.5",
+    "electron-packager": "^15.3.0",
+    "electron-updater": "^4.3.5",
+    "eslint": "^7.18.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^5.0.0",
+    "eslint-plugin-vue": "^7.5.0",
+    "eslint-webpack-plugin": "^2.4.3",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^4.5.0",
+    "mini-css-extract-plugin": "^1.1.2",
+    "node-loader": "^1.0.2",
+    "sass": "^1.51.0",
+    "sass-loader": "^10.0.4",
+    "sql.js": "^1.4.0",
+    "style-loader": "^2.0.0",
+    "stylelint": "^13.9.0",
+    "stylelint-webpack-plugin": "^2.1.1",
+    "ts-loader": "^9.2.9",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.4",
+    "url-loader": "^4.1.1",
+    "uuid": "^8.3.2",
+    "vue-loader": "^17.0.0",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.14",
+    "webpack": "^5.72.0",
+    "webpack-bundle-analyzer": "^4.3.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.8.1",
+    "webpack-merge": "^5.7.3",
+    "ws": "^7.4.1"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "view-design": "^4.4.0",
+    "vue": "^3.2.33",
+    "vue-router": "^3.4.7",
+    "vuex": "^3.5.1"
+  },
+  "publish": [
+    {
+      "provider": "generic",
+      "url": "http://localhost"
+    }
+  ],
+  "build": {
+    "asar": true,
+    "productName": "electron-vue",
+    "appId": "com.mutou.app",
+    "copyright": "Copyright © year motou",
+    "directories": {
+      "output": "pack"
+    },
+    "files": [
+      "app/**"
+    ],
+    "mac": {
+      "identity": "com.mutou.app",
+      "target": [
+        "dmg"
+      ],
+      "artifactName": "${productName}.${ext}"
+    },
+    "dmg": {
+      "title": "${productName}",
+      "artifactName": "${productName} ${version}.${ext}"
+    },
+    "win": {
+      "icon": "./src/static/img/icon.jpg",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "${productName} ${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "runAfterFinish": true,
+      "allowElevation": true,
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": true,
+      "allowToChangeInstallationDirectory": true,
+      "deleteAppDataOnUninstall": true,
+      "artifactName": "${productName} ${version}.${ext}",
+      "shortcutName": "木头人",
+      "guid": "com.mutou.app",
+      "include": "scripts/installer.nsh"
+    }
+  }
+}
