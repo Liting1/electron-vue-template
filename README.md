@@ -13,6 +13,7 @@
 2. `npm install`
 3. `npm start` 本地开发桌面应用 electron + vue3
 4. `npm run build` 使用 electron-builder 打包桌面应用
+5. `npm run publish` 快速构建版本,自动递增版本号,需要保证git 工作区域是干净的，才能够运行
 5. `npm run web-serve` 在本地浏览器开发渲染进程作为web应用
 6. `npm run web-build` 构建打包web应用
 5. `npm run packager-build` 使用 electron-packager 打包生产
