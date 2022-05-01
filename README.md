@@ -26,7 +26,7 @@
 ### 常见问题
 
 1. 打包应用程序时需要下载 electron-v18.2.0-win32-x64.zip 文件，下载速度很慢，下载失败。
-> window系统，可以将项目下的 electron-v18.2.0-win32-x64.zip 已经下载好的文件直接复制到 `C:\Users\liting\AppData\Local\electron\Cache`文件夹下, 注：第二个目录时对应用户的目录，每个人的可能不一样
+> window系统，可以将 electron-v18.2.0-win32-x64.zip 已经下载好的文件直接复制到 `C:\Users\liting\AppData\Local\electron\Cache`文件夹下, 注：第二个目录时对应用户的目录，每个人的可能不一样
 
 2. electron是其他版本的可以选择从该链接下载：https://npm.taobao.org/mirrors/electron/ electron打包所需文件所有版本下载地址
 
