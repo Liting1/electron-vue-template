@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>AAAAA</title>
+	<link rel="stylesheet" href="../css/initiate.css">
+</head>
+<body>
+	<h1>这是窗口A-initiate</h1>
+	<div class="pic">
+		<ul>
+			<li><img src="../images/one.jpg"></li>
+			<li><img src="../images/two.gif"></li>
+			<li><img src="../images/three.jpg"></li>
+			<li><img src="../images/foru.jpg"></li>
+			<li><img src="../images/five.jpg"></li>
+			<li><img src="../images/six.jpg"></li>
+			<li><img src="../images/seven.jpg"></li>
+			<li><img src="../images/eight.jpg"></li>
+			<li><img src="../images/ten.jpg"></li>
+		</ul>
+	</div>
+	<button class="btn">随机创建一个图片</button>
+	<div class="box"></div>
+	<script type="module">
+		const { ipcRenderer } = require('electron');
+		let box = document.querySelector('.box');
+		ipcRenderer.on('a-render-message', (ev, data)=>{
+			box.innerHTML=JSON.stringify(data);
+			console.log(data)
+		});
+
+		let btn = document.querySelector('.btn');
+		let arr = ['one', 'two', 'three', 'foru', 'five', 'six', 'seven', 'eight', 'ten'];
+		let ul = document.querySelector('.pic ul');
+		btn.onclick = function(){
+			let i = Math.ceil(Math.random()*arr.length);
+			let domStr = `<li><img src="../images/${i == 1 ? arr[i] + '.gif': arr[i]+ '.jpg'}"></li>`
+			ul.innerHTML+= domStr;
+		}
+	</script>
+</body>
+</html>

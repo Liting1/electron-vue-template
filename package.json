@@ -1,0 +1,138 @@
+{
+  "name": "electron-vue-cli",
+  "version": "1.2.9",
+  "description": "electron + vue + template 快速开发",
+  "main": "./app/main.js",
+  "scripts": {
+    "dev": "node ./build/webpack.config.js MODE=dev NODE_ENV=development",
+    "build": "node ./build/webpack.config.js MODE=dev NODE_ENV=production",
+    "packager-build": "node ./build/webpack.config.js MODE=dev NODE_ENV=production packagerBuild=true && electron-packager ./ appName --win --out ./pack",
+    "test-serve": "node ./build/webpack.config.js MODE=test NODE_ENV=development",
+    "pro-serve": "node ./build/webpack.config.js MODE=pro NODE_ENV=development",
+    "dev-serve": "node ./build/webpack.config.js MODE=dev NODE_ENV=development",
+    "exp-serve": "node ./build/webpack.config.js MODE=exp NODE_ENV=development",
+    "test-build": "node ./build/webpack.config.js MODE=test NODE_ENV=production",
+    "pro-build": "node ./build/webpack.config.js MODE=pro NODE_ENV=production",
+    "exp-build": "node ./build/webpack.config.js MODE=exp NODE_ENV=production",
+    "dev-build": "node ./build/webpack.config.js MODE=dev NODE_ENV=production"
+  },
+  "keywords": [
+    "Electron",
+    "Vue",
+    "template",
+    "webpack"
+  ],
+  "author": "liting",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-import": "^1.13.3",
+    "chalk": "^4.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^6.3.2",
+    "core-js": "^2.6.11",
+    "css-loader": "^5.0.0",
+    "del": "^6.0.0",
+    "electron": "^11.2.0",
+    "electron-builder": "^22.11.7",
+    "electron-dev-webpack-plugin": "^1.0.5",
+    "electron-packager": "^15.3.0",
+    "electron-updater": "^4.3.5",
+    "eslint": "^7.18.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^5.0.0",
+    "eslint-plugin-vue": "^7.5.0",
+    "eslint-webpack-plugin": "^2.4.3",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^4.5.0",
+    "mini-css-extract-plugin": "^1.1.2",
+    "node-loader": "^1.0.2",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^10.0.4",
+    "sql.js": "^1.4.0",
+    "style-loader": "^2.0.0",
+    "stylelint": "^13.9.0",
+    "stylelint-webpack-plugin": "^2.1.1",
+    "url-loader": "^4.1.1",
+    "uuid": "^8.3.2",
+    "vue-loader": "^15.9.3",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.12",
+    "webpack": "^5.2.0",
+    "webpack-bundle-analyzer": "^4.3.0",
+    "webpack-cli": "^4.1.0",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.7.3",
+    "ws": "^7.4.1"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "view-design": "^4.4.0",
+    "vue": "^2.6.12",
+    "vue-router": "^3.4.7",
+    "vuex": "^3.5.1"
+  },
+  "publish": [
+    {
+      "provider": "generic",
+      "url": "http://localhost"
+    }
+  ],
+  "build": {
+    "asar": true,
+    "productName": "electron-vue",
+    "appId": "com.mutou.app",
+    "copyright": "Copyright © year motou",
+    "directories": {
+      "output": "pack"
+    },
+    "files": [
+      "app/**"
+    ],
+    "mac": {
+      "identity": "com.mutou.app",
+      "target": [
+        "dmg"
+      ],
+      "artifactName": "${productName}.${ext}"
+    },
+    "dmg": {
+      "title": "${productName}",
+      "artifactName": "${productName}.${ext}"
+    },
+    "win": {
+      "icon": "./src/static/img/icon.jpg",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "${productName}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "runAfterFinish": true,
+      "allowElevation": true,
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": true,
+      "allowToChangeInstallationDirectory": true,
+      "deleteAppDataOnUninstall": true,
+      "artifactName": "${productName}.${ext}",
+      "shortcutName": "木头人",
+      "guid": "com.mutou.app",
+      "include": "build/installer.nsh"
+    }
+  }
+}
