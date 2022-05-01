@@ -6,6 +6,7 @@
   "scripts": {
     "start": "ts-node scripts/devServer.ts env=dev mode=development",
     "build": "ts-node scripts/devServer.ts env=dev mode=production",
+    "publish": "npm version patch && npm run build",
     "web-serve": "ts-node scripts/webServer.ts env=dev mode=development",
     "web-build": "ts-node scripts/webServer.ts env=dev mode=production",
     "packager-build": "ts-node scripts/packagerBuild.ts env=dev mode=production && electron-packager ./ appName --win --out ./pack",
