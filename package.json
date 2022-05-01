@@ -1,6 +1,6 @@
 {
   "name": "electron-vue-template",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "description": "electron + vue + template 快速开发",
   "main": "./app/main.js",
   "scripts": {
