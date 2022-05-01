@@ -133,8 +133,7 @@
       "deleteAppDataOnUninstall": true,
       "artifactName": "${productName} ${version}.${ext}",
       "shortcutName": "木头人",
-      "guid": "com.mutou.app",
-      "include": "scripts/installer.nsh"
+      "guid": "com.mutou.app"
     }
   }
 }
