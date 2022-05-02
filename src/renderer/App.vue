@@ -1,38 +1,26 @@
 <template>
-  <div>
-<!--    <router-view />-->
-    <h2 class="title">Vue3 Hello world</h2>
-    <p>{{getData}} 2.0.6 version</p>
-    <ul>
-      <li>哈哈哈哈哦</li>
-    </ul>
-<!--    <img :src="require('@/static/img/bg.jpg')" alt="">-->
-  </div>
+  <img alt="Vue logo" src="./assets/images/vue.png">
+  <HelloWorld msg="Welcome to Your Vue.js App"/>
 </template>
 
-<script lang="ts">
-// import Nav from './components/Nav';
+<script>
+import HelloWorld from './components/HelloWorld.vue';
 
 export default {
-  setup () {},
-  data () {
-    return {
-      a: 123
-    };
-  },
-  computed: {
-    getData () {
-      if (this.a?.b) {
-        return 6666;
-      }
-      return 6666;
-    }
+  name: 'App',
+  components: {
+    HelloWorld
   }
 };
 </script>
 
-<style scoped lang="sass">
-.title
-  color: red
-  //background: url("@/static/img/bg.jpg")
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
 </style>

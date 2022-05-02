@@ -18,10 +18,12 @@
     "spaced-comment": ["error", "always"],
     "no-tabs": "off",
     "vue/comment-directive": "off",
+    "vue/no-multiple-template-root":  "off",
+    "vue/multi-word-component-names": "off",
     "max-params": ["error", 4] // 函数最多四个参数
   },
   "parser": "vue-eslint-parser",
-  "plugins": ["vue","@typescript-eslint"],
+  "plugins": ["@typescript-eslint", "vue"],
   "settings": {
     "import/resolver": {
       "node": {

@@ -4,6 +4,7 @@
 + __vue 3.2+ 版本__
 + __vuex 4.0+ 版本__
 + __vue-router 4.0+ 版本__
++ __vue-devtools 6.4+ 版本__
 + __typescript 4.6+ 版本__
 + __electron 18.2+ 版本__
 + __sql.js 1.6+ 版本__
@@ -51,6 +52,9 @@
 5. vue3 + typescript 全家桶
 7. sass
 8. ts-node
+9. 支持 vue-devtools 调试
+
+i![view](./doc/image/view.png)
 
 ### 项目目录结构
 
