@@ -1,10 +1,8 @@
 // 注册快捷键
-import { app, globalShortcut } from 'electron';
-import { getWin } from '../utils';
+import { app, globalShortcut, BrowserWindow } from 'electron';
+import { getWin } from '@/main/utils';
 class Shortcut {
-  constructor () {
-    this.win = null; // 主窗口
-  }
+  private win: BrowserWindow;
 
   init () {
     this.win = getWin('mainWin');

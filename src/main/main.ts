@@ -81,7 +81,6 @@ class App {
     if (this.mode === 'development') {
       plugins.installPlugin(); // 安装插件
     }
-    console.log(this.mode);
   }
 
   closed () {

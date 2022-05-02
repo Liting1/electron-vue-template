@@ -9,15 +9,17 @@
     "outDir": "./app/",
     "resolveJsonModule": true, // 允许引入json文件作为一个模块
     "lib": ["es6", "es2020", "DOM"],
-    "types": ["node"]
+    "types": ["node"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@render/*": ["src/render/*"],
+      "@main/*": ["src/main/*"]
+    }
   },
   "exclude": [
     "node_modules"
   ],
   "include": ["src", "scripts", "shims-vue.d.ts"],
-  "baseUrl": ".",
-  "paths": {
-    "@/*": ["src/*"],
-    "@render/*": ["src/render/*"]
-  }
+
 }

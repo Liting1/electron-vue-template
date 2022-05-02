@@ -74,8 +74,7 @@ class Db extends Table {
               this.throttlingFun();
               resolve({ msg: '同步数据库成功' });
             } catch (err) {
-              console.log(333333333, err);
-              // this.errorHandler(err);
+              this.errorHandler(err, 'initDatabase');
             }
           }
         });

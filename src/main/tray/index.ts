@@ -1,10 +1,11 @@
-import { app, Tray, Menu, nativeImage, shell } from 'electron';
+import { app, Tray, Menu, nativeImage, shell, BrowserWindow } from 'electron';
 import path from 'path';
-import { getWin } from '../utils';
+import { getWin } from '@/main/utils';
 
 export default class {
+  private tray: Tray;
+  private win: BrowserWindow;
   constructor () {
-    this.tray = null;
     this.win = getWin('mainWin');
     this.init();
   }
@@ -22,7 +23,7 @@ export default class {
         label: '打开托盘文档',
         type: 'normal',
         click () {
-          shell.openPath('https://www.electronjs.org/docs/api/tray');
+          shell.openPath('https://www.electronjs.org/docs/api/tray').catch(err => console.log(err));
         }
       }, {
         label: '退出',

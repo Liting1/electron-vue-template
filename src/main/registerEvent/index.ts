@@ -1,25 +1,15 @@
-/*
- * @Author: your name
- * @Date: 2020-10-26 21:22:49
- * @LastEditTime: 2020-12-27 12:17:35
- * @LastEditors: Please set LastEditors
- * @Description: 主线程注册事件
- * @FilePath: \electron-vue-template\src\main\registerEvent\index.js
- */
 import path from 'path';
 import url from 'url';
-import { app, ipcMain } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 import mainWinEvent from './mainWinEvent';
 import { createInitiateWin, createViewWin } from '../createWindow';
 import updateHandle from './update';
 import { getWin } from '../utils';
 
 class RegisterEvent {
-  constructor () {
-    this.win = null; 		// 主窗口
-    this.initiate = null;
-    this.view = null;
-  }
+  private win: BrowserWindow;
+  private initiate: BrowserWindow;
+  private view: BrowserWindow;
 
   init () {
     this.win = getWin('mainWin');
@@ -43,7 +33,7 @@ class RegisterEvent {
       }
       this.initiate = createInitiateWin();
       const filePath = url.pathToFileURL(this.getPath('initiate.html')).href;
-      this.initiate.loadURL(filePath);
+      this.initiate.loadURL(filePath).catch(err => console.log('err: ', err));
       this.initiate.on('closed', () => {
         this.initiate = null;
         console.log('initiate is closed');
@@ -58,7 +48,7 @@ class RegisterEvent {
       }
       this.view = createViewWin();
       const filePath = url.pathToFileURL(this.getPath('view.html')).href;
-      this.view.loadURL(filePath);
+      this.view.loadURL(filePath).catch(err => console.log(err));
       this.view.on('closed', () => {
         this.view = null;
         console.log('view is closed');

@@ -1,11 +1,4 @@
-/*
- * @Author: your name
- * @Date: 2020-10-24 20:29:25
- * @LastEditTime: 2020-12-27 09:41:11
- * @LastEditors: Please set LastEditors
- * @Description: 创建窗口
- * @FilePath: \electron-vue-template\src\main\createWindow\index.js
- */
+
 import { BrowserWindow } from 'electron';
 import path from 'path';
 const createMainWin = (options = {}) => {
@@ -37,6 +30,7 @@ const createInitiateWin = (options = {}) => {
   }, options);
   return new BrowserWindow(options);
 };
+
 const createViewWin = (options = {}) => {
   options = Object.assign({
     title: 'viewWin',

@@ -1,6 +1,7 @@
-import { ipcMain } from 'electron';
+import { ipcMain, BrowserWindow } from 'electron';
 
 class MainWinEvent {
+  private win: BrowserWindow;
   init (win) {
     this.win = win;
     this.minimize();

@@ -54,7 +54,11 @@ export default {
   },
   resolve: {
     // 引入文件时可以省略文件后缀名
-    extensions: ['.ts', '.js', '.json', '.vue', '.jsx', '.tsx']
+    extensions: ['.ts', '.js', '.json', '.vue', '.jsx', '.tsx'],
+    alias: {
+      '@': path.join(srcPatch),
+      '@main': path.join(srcPatch, 'main')
+    }
   },
   externals: [
     ...Object.keys(dependencies || {})
