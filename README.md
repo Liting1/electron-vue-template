@@ -54,7 +54,7 @@
 8. ts-node
 9. 支持 vue-devtools 调试
 
-i![view](./doc/image/view.png)
+![view](./doc/image/view.png)
 
 ### 项目目录结构
 
