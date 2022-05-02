@@ -3,12 +3,12 @@ import url from 'url';
 import path from 'path';
 import electron from 'electron';
 import { createMainWin } from './createWindow';
-// import sqlite from './sql';
+import sqlite from './sql';
 import registerEvent from './registerEvent';
 import shortcut from './shortcut';
 import Tray from './tray';
-// import createSocket from './socket';
 import plugins from './plugins';
+
 class App {
   public mode: string;
   private app: any;
@@ -72,7 +72,7 @@ class App {
   }
 
   async ready () {
-    // await sqlite.initDatabase();	// 初始化数据库
+    await sqlite.initDatabase();	// 初始化数据库
     this.createWindow(); 			// 创建主窗口
     this.tray = new Tray();			// 创建应用托盘
     registerEvent.init();			// 注册事件

@@ -1,4 +1,5 @@
 import Utils from './Utils';
+
 class Table extends Utils {
   /**
 	 * 初始化数据库表
@@ -23,17 +24,17 @@ class Table extends Utils {
   }
 
   // 创建表
-  test () {
+  userTable () {
     return this.createTableSql('test', {
       username: 'varchar(10)',
-      passworld: 'varchar(20)',
+      password: 'varchar(20)',
       userID: 'varchar(5)',
       desc: 'text'
     }, {
-      username: 'liting',
-      passworld: '123456',
+      username: 'liTing',
+      password: '123456',
       userID: '00000',
-      desc: 'xxxxx'
+      desc: 'hello world'
     });
   }
 }

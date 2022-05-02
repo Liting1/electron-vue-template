@@ -6,6 +6,7 @@
 + __vue-router 4.0+ 版本__
 + __typescript 4.6+ 版本__
 + __electron 18.2+ 版本__
++ __sql.js 1.6+ 版本__
 + __node版本 16.13.2__
 + __npm 版本 8.1.2__
 + npm 下载源 https://registry.npm.taobao.org/

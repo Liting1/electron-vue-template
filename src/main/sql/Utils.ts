@@ -4,6 +4,7 @@ import { app } from 'electron';
 
 class Utils {
   // 判断一个变量类型是否为对象
+  protected once: Boolean;
   isObject (obj) {
     return Object.prototype.toString.call(obj) === '[object Object]';
   }
@@ -23,7 +24,7 @@ class Utils {
 	 * @param  { Object } data 查询所得结果
 	 * @return { Array }      返回查询格式化之后的数据
 	 */
-  formatSelectData ({ values, columns }) {
+  formatSelectData ({ values, columns }: Record<string, any>): Array<any> {
     if (!values || !columns) return [];
     return values.map(
       res => res.reduce(
@@ -109,10 +110,11 @@ class Utils {
       exp: 'dbExp.sqlite',		// 体验环境
       pro: 'db.sqlite' 				// 生产环境
     };
+    const MODE = process.env.ENV;
     const databaseUrl = dbName[MODE];
     return {
       dbpath: path.join(app.getPath('userData'), databaseUrl),
-      dbBackuppath: path.join(app.getPath('userData'), 'backup' + databaseUrl)
+      dbBackupPath: path.join(app.getPath('userData'), 'backup' + databaseUrl)
     };
   }
 
@@ -121,8 +123,8 @@ class Utils {
     if (!this.once) {
       this.once = true;
       // 使用备份数据库
-      const { dbBackuppath, dbpath } = this.getDatabaseUrl();
-      fs.rename(dbBackuppath, dbpath, (err) => {
+      const { dbBackupPath, dbpath } = this.getDatabaseUrl();
+      fs.rename(dbBackupPath, dbpath, (err) => {
         if (err) {
           // 如果复制使用备份数据库任然出错，则删除数据库从新初始化
           fs.unlink(dbpath, async err => {
@@ -130,13 +132,12 @@ class Utils {
               this.log(err, '删除文件失败');
             } else {
               // 删除缓存文件
-              file.hanldeClearFileFolder(store.system.filePath);
               await this.initDatabase();
             }
             this.once = false;
-            this.win.webContents.send('dbError');
+            // this.win.webContents.send('dbError');
           });
-        };
+        }
         this.log(error, sql);
       });
     }
@@ -154,17 +155,22 @@ class Utils {
   /**
 	 *  数据库备份
 	 */
-  backupDataBase (db) {
-    const tiemrFun = (bool) => {
-      const blob = bool ? db.export() : fs.readFileSync(this.options.database);
-      fs.writeFile(this.getDatabaseUrl().dbBackuppath, blob, (err) => {
+  backupDataBase (db, options) {
+    const timerFun = (bool) => {
+      const blob = bool ? db.export() : fs.readFileSync(options.database);
+      fs.writeFile(this.getDatabaseUrl().dbBackupPath, blob, (err) => {
         if (err) console.log('备份数据库失败');
       });
     };
+
     // 每次启动程序时备份一次
-    tiemrFun(true);
+    timerFun(true);
     // 启动程序后每隔半小时备份一次
-    setInterval(() => tiemrFun(false), 1800000);
+    setInterval(() => timerFun(false), 1800000);
+  }
+
+  protected async initDatabase () {
+    return null;
   }
 }
 

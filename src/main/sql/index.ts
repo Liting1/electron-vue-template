@@ -1,41 +1,42 @@
-import initSqlJs from 'sql.js';
+import initSqlJs, { Database } from 'sql.js';
 import fs from 'fs';
 import path from 'path';
 import Table from './Table';
+import Utils from './Utils';
 
 class Db extends Table {
+  public readonly options: { database: string };
+  private db: Database;
+  private readonly tableNames: any[];
+  private utils: Utils;
+  private timer: NodeJS.Timeout;
+  private dataDbFile: Buffer;
   constructor (options = {}) {
-    super(options);
-    this.options = Object.assign({
-      database: this.getDatabaseUrl().dbpath
+    super();
+    this.utils = new Utils(); // 添加工具类
+    this.options = Object.assign({ // 初始化数据库配置
+      database: this.utils.getDatabaseUrl().dbpath
     }, options);
-    this.dataDbFile = null;
     // 存储数据库表名 和 对应创建表的数据库语句
-    this.tableNames = [
-      this.test()
-    ];
-    this.db = null;
-    this.timer = null;
+    this.tableNames = [this.userTable()];
     this.once = false;
   }
 
   initDatabase () {
     return new Promise((resolve) => {
-      // 判断文件夹是否存在
-      fs.stat(path.dirname(this.options.database), err => {
-        // 文件夹不存在
-        if (err) {
+      fs.stat(path.dirname(this.options.database), err => { // 判断文件夹是否存在
+        if (err) { // 文件夹不存在
           fs.mkdirSync(path.dirname(this.options.database), { recursive: true });
         }
-        // 存在则判断该文件是否存在
-        fs.stat(this.options.database, async err => {
-          if (err && err.code === 'ENOENT') {
-            // 如果本地不存在该数据库则初始化
+
+        fs.stat(this.options.database, async err => { // 存在则判断该文件是否存在
+          if (err && err.code === 'ENOENT') { // 如果本地不存在该数据库则初始化
             const SQL = await initSqlJs();
             this.db = new SQL.Database();
+            // 创建数据库表
             this.tableNames.forEach(item => this.db.run(item.sql));
             // 数据库备份
-            this.backupDataBase(this.db);
+            this.utils.backupDataBase(this.db, this.options);
             // 将数据库写入本地文件
             this.throttlingFun();
             resolve({ msg: '创建数据成功' });
@@ -43,36 +44,38 @@ class Db extends Table {
             // 如果存在该数据库则进行数据库同步
             try {
               this.db = await this.openDatabase();
-              let tables = this.db.exec('SELECT name FROM sqlite_master WHERE type=\'table\'');
-              tables = this.formatSelectData(tables.values().next().value);
+              let tables = this.db.exec("SELECT name FROM sqlite_master WHERE type='table'");
+              tables = this.utils.formatSelectData(tables.values().next().value || {});
               for (const table of this.tableNames) {
-                if (!tables.some(t => t.name === table.name)) {
+                // 判断是否有新增数据库表
+                if (!tables.some((t: any) => t.name === table.name)) {
                   this.db.run(table.sql);
                 } else {
+                  // 判断数据库表是否有新增字段
                   let field = this.db.exec(`PRAGMA table_info("${table.name}")`);
                   field = this.formatSelectData(field.values().next().value).map(t => t.name);
-                  const { newField, oldField } = this.diff(field, [...table.field]);
+                  const { newField, oldField } = this.utils.diff(field, [...table.field]);
                   if (newField.length) {
-                    // 执行表的字段增加
-                    newField.forEach(
+                    newField.forEach( // 执行表的字段增加
                       item => this.db.run(`ALTER TABLE ${table.name} ADD ${item} ${table.data[item]}  ${this.defaultValue(table.initData[item])}`)
                     );
                   }
                   if (oldField.length) {
                     // 执行表的字段删除
-                    this.deleteField(table.name);
+                    await this.deleteField(table.name);
                   }
                 }
               }
               // 删除多余的表格
-              const { oldField } = this.diff(tables.map(t => t.name), this.tableNames.map(t => t.name));
+              const { oldField } = this.utils.diff(tables.map((t:any) => t.name), this.tableNames.map(t => t.name));
               oldField.forEach(t => this.db.run(`DROP TABLE ${t}`));
               // 备份数据库
-              this.backupDataBase(this.db);
+              this.backupDataBase(this.db, this.options);
               this.throttlingFun();
               resolve({ msg: '同步数据库成功' });
             } catch (err) {
-              this.errorHandler(err);
+              console.log(333333333, err);
+              // this.errorHandler(err);
             }
           }
         });
@@ -141,7 +144,7 @@ class Db extends Table {
 	 * @param {Object} data 需要修改或者插入的数据
 	 * @param {Object} whe 判断数据是否存在的条件
 	 */
-  async mergeData (table, data = {}, whe = {}) {
+  async mergeData (table, data:Record<any, any> = {}, whe = {}) {
     this.db = await this.openDatabase();
     try {
       whe = this.formatWhereData(whe);
@@ -165,7 +168,7 @@ class Db extends Table {
 	 * 性能优化节流函数，延迟关闭数据库防止短时间内多次触发数据库文件读写事件
 	 * @param  {Function} cb 回调函数
 	 */
-  throttlingFun (cb) {
+  throttlingFun (cb?: () => void) {
     clearTimeout(this.timer);
     this.timer = setTimeout(() => {
       try {
@@ -207,8 +210,8 @@ class Db extends Table {
 
   /**
 	 * 将数据插入到对于的表中
-	 * @param  {Sting} table 			需要插入数据的表名
-	 * @param  {Object | Array} data  	需要插入的具体数据 对象key, val形式 也可以是数组形式一次插入多条数据
+	 * @param table 			需要插入数据的表名
+	 * @param {Object | Array} data  	需要插入的具体数据 对象key, val形式 也可以是数组形式一次插入多条数据
 	 *                        			对象的key值必须是所需插入表的字段名
 	 *                           		对象的val值只能是字符形式表示该字段的对应的值
 	 * @return {Object}       			返回执行之后的数据结果
@@ -270,8 +273,7 @@ class Db extends Table {
 	 * @return {Array} 所有表名组成的数组
 	 */
   async getAllTable () {
-    const res = await this.select('SELECT name FROM sqlite_master WHERE type=\'table\'');
-    return res;
+    return await this.select('SELECT name FROM sqlite_master WHERE type=\'table\'');
   }
 
   /**
@@ -281,8 +283,7 @@ class Db extends Table {
 	 * @return {[type]}       [description]
 	 */
   async tableAddField (table, field = {}) {
-    const res = await this.query(`ALTER TABLE ${table} ADD ${this.formatCreateTableData(field)}`);
-    return res;
+    return await this.query(`ALTER TABLE ${table} ADD ${this.formatCreateTableData(field)}`);
   }
 
   /**
@@ -291,8 +292,7 @@ class Db extends Table {
 	 * @return {[type]}       	[description]
 	 */
   async deleteTable (table) {
-    const res = await this.query(`DROP TABLE ${table}`);
-    return res;
+    return await this.query(`DROP TABLE ${table}`);
   }
 
   /**
@@ -301,8 +301,7 @@ class Db extends Table {
 	 * @return {[type]}       	[description]
 	 */
   async emptyTable (table) {
-    const res = await this.query(`DELETE FROM ${table}`);
-    return res;
+    return await this.query(`DELETE FROM ${table}`);
   }
 
   /**

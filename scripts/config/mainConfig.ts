@@ -2,6 +2,7 @@ import path from 'path';
 import Base from './base';
 import { dependencies } from '../../package.json';
 import ElectronDevWebpackPlugin from 'electron-dev-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
 // import CopyPlugin from 'copy-webpack-plugin';
 // import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { DefinePlugin,ProgressPlugin } from './plugins';
@@ -16,11 +17,11 @@ const { isDevMode, srcPatch } = Base.getConfig();
 
 const plugins = [
   // new BundleAnalyzerPlugin({ analyzerPort: 8888 }), // chunks 分析插件
-  // new CopyPlugin({ // 复制 sqlite数据库所需二进制文件
-  //   patterns: [{
-  //     from: './node_modules/sql.js/dist/sql-wasm.wasm'
-  //   }]
-  // }),
+  new CopyPlugin({ // 复制 sqlite数据库所需二进制文件
+    patterns: [{
+      from: './node_modules/sql.js/dist/sql-wasm.wasm'
+    }]
+  }),
   DefinePlugin,
   ProgressPlugin
 ];
@@ -48,8 +49,12 @@ export default {
     __dirname: isDevMode
   },
   module: {
-    rules: [tsRule]
-    // noParse: /sql.js/ // webpack 过滤掉对sql.js 模块的处理
+    rules: [tsRule],
+    noParse: /sql.js/ // webpack 过滤掉对sql.js 模块的处理
+  },
+  resolve: {
+    // 引入文件时可以省略文件后缀名
+    extensions: ['.ts', '.js', '.json', '.vue', '.jsx', '.tsx']
   },
   externals: [
     ...Object.keys(dependencies || {})

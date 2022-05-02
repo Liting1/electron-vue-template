@@ -33,6 +33,7 @@
   "globals": {
     "NODE_ENV": "readonly",
     "MODE": "readonly",
-    "VERSION": "readonly"
+    "VERSION": "readonly",
+    "NodeJS": "readonly"
   }
 }
