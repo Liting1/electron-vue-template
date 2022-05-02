@@ -16,6 +16,7 @@
   "include": ["src", "scripts", "shims-vue.d.ts"],
   "baseUrl": ".",
   "paths": {
-    "@": ["src/*"]
+    "@/*": ["src/*"],
+    "@render/*": ["src/render/*"]
   }
 }

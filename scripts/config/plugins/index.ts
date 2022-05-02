@@ -6,6 +6,7 @@ import SplitChunksPlugin from './SplitChunksPlugin';
 import VueLoaderPlugin from './VueLoaderPlugin';
 import ESLintPlugin from './ESLintPlugin';
 import DefinePlugin from './DefinePlugin';
+import ProgressPlugin from './ProgressPlugin';
 
 export {
   CleanWebpackPlugin,
@@ -15,5 +16,6 @@ export {
   SplitChunksPlugin,
   VueLoaderPlugin,
   ESLintPlugin,
-  DefinePlugin
+  DefinePlugin,
+  ProgressPlugin
 };

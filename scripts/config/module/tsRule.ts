@@ -1,6 +1,6 @@
 
 export default {
-  test: /\.ts$/,
+  test: /\.tsx?$/,
   loader: 'ts-loader',
   options: {
     appendTsSuffixTo: [/\.vue$/]

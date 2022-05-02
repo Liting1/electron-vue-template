@@ -2,6 +2,8 @@
 + __使用 vue.js 快速开发electron跨平台桌面应用__
 + __webpack 5.72+ 版本__
 + __vue 3.2+ 版本__
++ __vuex 4.0+ 版本__
++ __vue-router 4.0+ 版本__
 + __typescript 4.6+ 版本__
 + __electron 18.2+ 版本__
 + __node版本 16.13.2__
@@ -71,26 +73,6 @@
 ```
 
 
-[comment]: <> (### 代办)
-
-[comment]: <> (+ 升级 webpack@latest)
-
-[comment]: <> (+ 升级 vue-loader@latest)
-
-[comment]: <> (+ 升级 vue-template-compiler  )
-
-[comment]: <> (+ 升级 vue@latest)
-
-[comment]: <> (+ 切换 node版本到 16.13.2)
-
-[comment]: <> (+ 删除多余的 webpack 的 babel编译)
-
-[comment]: <> (+ 添加 ts-loader)
-
-[comment]: <> (+ 添加 typescript)
-
-[comment]: <> (+ 添加 shims-vue.d.ts 文件)
-
-[comment]: <> (+ 使用ts 重写webpack配置)
-
-[comment]: <> (+ 添加 ts 的eslint 规范)
+### 代办
+1. eslint
+2. 原生模块构建

@@ -5,7 +5,6 @@
   ],
   "env": {
     "browser": true,
-    "node": true,
     "es6": true
   },
   "parserOptions": {
@@ -16,11 +15,21 @@
   },
   "rules": {
     "semi": ["error", "always"], // 代码必须以分号结束
+    "spaced-comment": ["error", "always"],
     "no-tabs": "off",
-    "vue/comment-directive": "off"
+    "vue/comment-directive": "off",
+    "max-params": ["error", 4] // 函数最多四个参数
   },
   "parser": "vue-eslint-parser",
   "plugins": ["vue","@typescript-eslint"],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".ts", ".jsx", ".tsx", ".json"]
+      }
+    },
+    "import/extensions": [".js", ".ts",".mjs", ".jsx", ".tsx", ".vue"]
+  },
   "globals": {
     "NODE_ENV": "readonly",
     "MODE": "readonly",

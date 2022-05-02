@@ -1,5 +1,10 @@
 # 排除eslint检查目录
-/builder
-/config
-/build
+builder/
+config/
+build/
+app/
+pack/
+node_modules/
+.idea/
+
 /**/*.d.ts

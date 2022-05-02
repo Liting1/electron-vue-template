@@ -1,13 +1,18 @@
 import path from 'path';
 import Base from './base';
 import { dependencies } from '../../package.json';
-// import CopyPlugin from 'copy-webpack-plugin';
 import ElectronDevWebpackPlugin from 'electron-dev-webpack-plugin';
-// import BundleAnalyzerPlugin from 'webpack-bundle-analyzer';
-import { DefinePlugin } from './plugins';
+// import CopyPlugin from 'copy-webpack-plugin';
+// import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import { DefinePlugin,ProgressPlugin } from './plugins';
 import { tsRule } from './module';
 
 const { isDevMode, srcPatch } = Base.getConfig();
+
+
+
+
+
 
 const plugins = [
   // new BundleAnalyzerPlugin({ analyzerPort: 8888 }), // chunks 分析插件
@@ -16,7 +21,8 @@ const plugins = [
   //     from: './node_modules/sql.js/dist/sql-wasm.wasm'
   //   }]
   // }),
-  DefinePlugin
+  DefinePlugin,
+  ProgressPlugin
 ];
 
 if (isDevMode) {
@@ -32,6 +38,7 @@ export default {
     filename: '[name].js'
   },
   mode: isDevMode ? 'development' : 'production',
+  devtool: isDevMode ? 'inline-source-map': 'none',
   watch: isDevMode,
   optimization: {
     minimize: true
