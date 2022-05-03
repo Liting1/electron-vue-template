@@ -69,7 +69,6 @@
 |	 |—— pages            其他渲染页面--子窗口页面
 |	 |—— renderer	        主渲染线程目录
 |    |—— static           静态资源目录
-|—— .babelrc            babel 配置文件
 |—— .gitignore          git 配置文件
 |—— package-lock.json
 |—— package.json
@@ -80,4 +79,8 @@
 
 ### 代办
 1. eslint
-2. 原生模块构建
+2. stylelint
+3. 原生模块构建
+4. 自动更新
+5. 项目可配置化
+6. 请求代理

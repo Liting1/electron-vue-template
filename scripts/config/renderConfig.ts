@@ -44,7 +44,6 @@ const options = {
       '@render': path.join(srcPatch, 'renderer')
     }
   },
-  // watch: isDevMode,
   module: {
     rules: [cssRule, sassRule, fontRule, imageRule, nodeRule, tsRule, vueRule]
   },
