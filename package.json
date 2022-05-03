@@ -53,7 +53,7 @@
     "eslint-plugin-vue": "^8.7.1",
     "eslint-webpack-plugin": "^2.4.3",
     "file-loader": "^6.2.0",
-    "html-webpack-plugin": "^4.5.0",
+    "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^1.1.2",
     "node-loader": "^1.0.2",
     "sass": "^1.51.0",

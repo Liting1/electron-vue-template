@@ -1,20 +1,24 @@
 # electron-vue-template
-+ __使用 vue.js 快速开发electron跨平台桌面应用__
-+ __webpack 5.72+ 版本__
-+ __vue 3.2+ 版本__
-+ __vuex 4.0+ 版本__
-+ __vue-router 4.0+ 版本__
-+ __vue-devtools 6.4+ 版本__
-+ __typescript 4.6+ 版本__
-+ __electron 18.2+ 版本__
-+ __sql.js 1.6+ 版本__
-+ __node版本 16.13.2__
-+ __npm 版本 8.1.2__
-+ npm 下载源 https://registry.npm.taobao.org/
+
++ __使用 Vue.js + Electron 快速开发跨平台桌面应用及web应用__
+
+![electron](https://img.shields.io/badge/electron-18.2.0-blue)
+![vue](https://img.shields.io/npm/v/vue?label=vue)
+![node](https://img.shields.io/badge/node-16.13.2-success)
+![npm](https://img.shields.io/badge/npm-8.1.2-success)
+![webpack](https://img.shields.io/badge/webpack-5.72.0-blue)
+![typescript](https://img.shields.io/badge/typescript-4.6.4-blue)
+![sql.js](https://img.shields.io/badge/sql.js-1.6.2-orange)
+![vue-devtools](https://img.shields.io/badge/vue--devtools-6.1.4-orange)
+![vue-router](https://img.shields.io/badge/vue--router-4.0.14-orange)
+![vuex](https://img.shields.io/badge/vuex-4.0.2-orange)
+
+> __npm 下载源 https://registry.npm.taobao.org/__
+
 
 ### 脚本说明
 1. `git clone https://github.com/Liting1/electron-vue-template.git`
-2. `npm install`
+2. `npm install` 安装项目所需依赖
 3. `npm start` 本地开发桌面应用 electron + vue3
 4. `npm run build` 使用 electron-builder 打包桌面应用
 5. `npm run publish` 快速构建版本,自动递增版本号,需要保证git 工作区域是干净的，才能够运行
