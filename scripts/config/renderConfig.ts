@@ -16,7 +16,7 @@ if (isProMode) {
 
 const options = {
   mode: isDevMode ? 'development' : 'production',
-  devtool: isDevMode ? 'inline-source-map': 'none',
+  devtool: isDevMode ? 'inline-source-map': undefined,
   entry: {
     renderer: [
       path.join(srcPatch, 'renderer/index.ts')

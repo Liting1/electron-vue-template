@@ -39,7 +39,7 @@ export default {
     filename: '[name].js'
   },
   mode: isDevMode ? 'development' : 'production',
-  devtool: isDevMode ? 'inline-source-map': 'none',
+  devtool: isDevMode ? 'inline-source-map': undefined,
   watch: isDevMode,
   optimization: {
     minimize: true
