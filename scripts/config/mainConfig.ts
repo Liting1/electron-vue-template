@@ -3,9 +3,8 @@ import Base from './base';
 import { dependencies } from '../../package.json';
 import ElectronDevWebpackPlugin from 'electron-dev-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
-// import CopyPlugin from 'copy-webpack-plugin';
 // import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
-import { DefinePlugin,ProgressPlugin } from './plugins';
+import { DefinePlugin,ProgressPlugin, ESLintPlugin } from './plugins';
 import { tsRule } from './module';
 
 const { isDevMode, srcPatch } = Base.getConfig();
@@ -23,7 +22,8 @@ const plugins = [
     }]
   }),
   DefinePlugin,
-  ProgressPlugin
+  ProgressPlugin,
+  ESLintPlugin
 ];
 
 if (isDevMode) {

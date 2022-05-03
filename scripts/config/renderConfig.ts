@@ -4,7 +4,7 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import Base from './base';
 import { cssRule, fontRule, imageRule, nodeRule, sassRule, tsRule, vueRule } from './module';
 import { CleanWebpackPlugin, HtmlWebpackPlugin, MiniCssExtractPlugin, VueLoaderPlugin, CopyPlugin, SplitChunksPlugin, DefinePlugin, ESLintPlugin, ProgressPlugin } from './plugins';
-const { isDevMode, srcPatch, isProMode } = Base.getConfig();
+const { isDevMode, srcPatch, isProMode, appConfig } = Base.getConfig();
 
 const plugins = [ProgressPlugin, HtmlWebpackPlugin, MiniCssExtractPlugin, VueLoaderPlugin, CopyPlugin, SplitChunksPlugin, DefinePlugin, ESLintPlugin];
 

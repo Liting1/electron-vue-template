@@ -1,5 +1,6 @@
 import path from 'path';
 import Utils from './utils';
+import appConfig from '../../../config'
 class Base extends Utils {
   static instance: Base;
   static init: () => Base;
@@ -14,12 +15,14 @@ class Base extends Utils {
   public isProMode: boolean;
   public cssPublicPath: string = '../';
   public srcPatch: string = path.join(__dirname, '../../../src');
+  public appConfig: typeof appConfig;
   constructor () {
     super();
     if (Base.instance) {
       return Base.instance;
     }
     this.init();
+    this.appConfig = appConfig;
     Base.instance = this;
   }
 

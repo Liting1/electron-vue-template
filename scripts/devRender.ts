@@ -3,7 +3,7 @@ import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import chalk from 'chalk';
 
-const { isDevMode } = Base.getConfig();
+const { isDevMode, appConfig } = Base.getConfig();
 
 class DevRender {
   static init;
@@ -22,7 +22,7 @@ class DevRender {
         this.server = new WebpackDevServer({
           static: output.path,
           compress: true, // 开发服务器启用gzip压缩
-          port: 8090,
+          port: appConfig.port,
           hot: true
         }, this.compiler);
         this.server.start().then(() => {
