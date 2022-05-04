@@ -5,15 +5,16 @@ import { getWin } from '@/main/utils';
 export default class {
   private tray: Tray;
   private win: BrowserWindow;
-  constructor () {
+  private options: Record<string, any>;
+  constructor (options) {
+    this.options = options;
     this.win = getWin('mainWin');
-    this.init();
   }
 
   init () {
     // Menu.setApplicationMenu(null);  // 清除默认的顶部菜单
     app.whenReady().then(() => {
-      const imgPath = process.env.NODE_ENV === 'development'
+      const imgPath = this.options.mode === 'development'
         ? path.join(__dirname, '../../static/img/icon.jpg')
         : path.join(__dirname, './static/img/icon.jpg');
 

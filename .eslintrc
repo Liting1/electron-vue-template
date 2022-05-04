@@ -33,9 +33,10 @@
     "import/extensions": [".js", ".ts",".mjs", ".jsx", ".tsx", ".vue"]
   },
   "globals": {
-    "NODE_ENV": "readonly",
+    "APP_ENV": "readonly",
     "MODE": "readonly",
     "VERSION": "readonly",
-    "NodeJS": "readonly"
+    "NodeJS": "readonly",
+    "Electron": "readonly"
   }
 }

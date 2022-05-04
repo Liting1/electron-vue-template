@@ -8,26 +8,29 @@ import registerEvent from './registerEvent';
 import shortcut from './shortcut';
 import Tray from './tray';
 import plugins from './plugins';
+import appConfig from '../../config';
 
 class App {
-  public mode: string;
-  private app: any;
+  public mode: string; // 开发模式
+  public env: string; // 运行环境
+  private app: Electron.App;
   private BrowserWindow: any;
-  private win: any;
-  private tray: any;
+  private win: Electron.BrowserWindow;
+  private tray: Tray;
+  private config: typeof appConfig;
   constructor ({ app, BrowserWindow }) {
-    this.mode = process.env.NODE_ENV;
     this.app = app;
+    this.config = appConfig;
+    this.mode = MODE;
+    this.env = APP_ENV;
     this.BrowserWindow = BrowserWindow;
-    this.win = null;
     this.runCheck();
     this.eventHandle(app);
   }
 
   /**
-	 * 当运行第二个应用时，直接聚焦到第一个已经存在的实例上
-	 * @return {[type]} [description]
-	 */
+	* 当运行第二个应用时，直接聚焦到第一个已经存在的实例上
+  */
   runCheck () {
     const gotTheLock = this.app.requestSingleInstanceLock();
     if (!gotTheLock) return this.app.quit();
@@ -47,8 +50,8 @@ class App {
     this.win = createMainWin();
     const filePath = this.mode === 'production'
       ? url.pathToFileURL(path.join(__dirname, 'index.html')).href
-      : 'http://localhost:8090';
-    this.win.loadURL(filePath);
+      : `http://localhost:${this.config.port}`;
+    this.win.loadURL(filePath).catch(err => console.log(err));
     // 等待渲染进程页面加载完毕再显示窗口
     this.win.once('ready-to-show', () => this.win.show());
   }
@@ -74,7 +77,8 @@ class App {
   async ready () {
     await sqlite.initDatabase();	// 初始化数据库
     this.createWindow(); 			// 创建主窗口
-    this.tray = new Tray();			// 创建应用托盘
+    this.tray = new Tray({ mode: this.mode });			// 创建应用托盘
+    this.tray.init();
     registerEvent.init();			// 注册事件
     shortcut.init();				// 设置快捷键
     // createSocket.init();			// 创建socket

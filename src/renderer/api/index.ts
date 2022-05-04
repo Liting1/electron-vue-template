@@ -1,7 +1,8 @@
 import axios from 'axios';
 // import qs from 'qs';
 
-console.log('MODE:', MODE, NODE_ENV);
+// 开发模式 & 开发环境
+console.log('MODE:', MODE, APP_ENV);
 
 // axios.defaults.baseURI =
 

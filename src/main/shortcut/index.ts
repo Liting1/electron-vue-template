@@ -21,9 +21,7 @@ class Shortcut {
   // 注册打开控制台快捷键
   openTools (win) {
     this.register('CommandOrControl+Shift+C', () => {
-      win.webContents.toggleDevTools({
-        mode: 'right' // 在右侧打开控制台
-      });
+      win.webContents.toggleDevTools();
     });
   }
 }

@@ -15,14 +15,14 @@ class Base extends Utils {
   public isProMode: boolean;
   public cssPublicPath: string = '../';
   public srcPatch: string = path.join(__dirname, '../../../src');
-  public appConfig: { eslint: { emitError: boolean; emitWarning: boolean }; proxy?: any; port: number };
+  public appConfig: typeof appConfig;
   constructor () {
     super();
     if (Base.instance) {
       return Base.instance;
     }
     this.init();
-    this.appConfig = appConfig(this);
+    this.appConfig = appConfig;
     Base.instance = this;
   }
 
@@ -49,7 +49,7 @@ class Base extends Utils {
     }
 
     if (nodeParams.env) { // 开发环境, 开发 测试 体验 线上
-      process.env.ENV = nodeParams.env || 'dev';
+      process.env.APP_ENV = nodeParams.env || 'dev';
     }
     return process.env;
   };

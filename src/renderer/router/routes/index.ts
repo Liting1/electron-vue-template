@@ -1,6 +1,6 @@
-// import { RouterOptions } from 'Vue-router';
 import Home from '@render/views/Home.vue';
 import Login from '@render/views/Login.vue';
+import Demo from '@render/views/Demo.vue';
 
 const routes = [{
   path: '/',
@@ -10,6 +10,10 @@ const routes = [{
   name: 'home',
   path: '/home',
   component: Home
+}, {
+  name: 'demo',
+  path: '/demo',
+  component: Demo
 }, {
   name: 'path',
   path: '/login',

@@ -23,8 +23,7 @@ class DevRender {
           static: output.path,
           compress: true, // 开发服务器启用gzip压缩
           port: appConfig.port,
-          hot: true,
-          proxy: appConfig.proxy || {}
+          hot: true
         }, this.compiler);
         this.server.start().then(() => {
           console.log('启动服务成功');
