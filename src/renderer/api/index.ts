@@ -1,4 +1,4 @@
-// import axios from 'axios';
+import axios from 'axios';
 // import qs from 'qs';
 
 // switch (window.MODE) {
@@ -17,3 +17,7 @@
 // }
 
 // axios.defaults.baseURI =
+
+export const getUserInfo = async () => {
+  return axios.get('/api/');
+};

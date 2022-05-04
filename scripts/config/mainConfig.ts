@@ -23,10 +23,10 @@ const plugins = [
   }),
   DefinePlugin,
   ProgressPlugin,
-  ESLintPlugin
 ];
 
 if (isDevMode) {
+  plugins.push(ESLintPlugin); // 开发模式下
   plugins.push(new ElectronDevWebpackPlugin()); // 开发热加载electron应用
 }
 

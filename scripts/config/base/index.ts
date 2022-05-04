@@ -15,14 +15,14 @@ class Base extends Utils {
   public isProMode: boolean;
   public cssPublicPath: string = '../';
   public srcPatch: string = path.join(__dirname, '../../../src');
-  public appConfig: typeof appConfig;
+  public appConfig: { eslint: { emitError: boolean; emitWarning: boolean }; proxy: { '/api': string }; port: number };
   constructor () {
     super();
     if (Base.instance) {
       return Base.instance;
     }
     this.init();
-    this.appConfig = appConfig;
+    this.appConfig = appConfig(this);
     Base.instance = this;
   }
 
