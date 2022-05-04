@@ -10,7 +10,7 @@ import Tray from './tray';
 import plugins from './plugins';
 import appConfig from '../../config';
 
-class App {
+class App {  
   public mode: string; // 开发模式
   public env: string; // 运行环境
   private app: Electron.App;

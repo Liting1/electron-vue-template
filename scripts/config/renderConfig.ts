@@ -45,7 +45,7 @@ const options = {
     }
   },
   module: {
-    rules: [cssRule, sassRule, fontRule, imageRule, nodeRule, tsRule, vueRule]
+    rules: [cssRule, ...sassRule, fontRule, imageRule, nodeRule, tsRule, vueRule]
   },
   plugins,
   target: ['web', 'electron-renderer']

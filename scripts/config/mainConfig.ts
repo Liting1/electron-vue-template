@@ -21,7 +21,7 @@ const plugins = [
 ];
 
 if (isDevMode) {
-  plugins.push(ESLintPlugin); // 开发模式下
+  plugins.push(ESLintPlugin); // 开发模式下 占时不生效
   plugins.push(new ElectronDevWebpackPlugin()); // 开发热加载electron应用
 }
 
