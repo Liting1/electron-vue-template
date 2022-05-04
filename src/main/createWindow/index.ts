@@ -13,6 +13,7 @@ const createMainWin = (options = {}) => {
     hasShadow: false,
     webPreferences: {
       contextIsolation: false,
+      webSecurity: false, // 是否开启跨域
       nodeIntegration: true 	// 在渲染进程引入node模块
     }
   }, options);

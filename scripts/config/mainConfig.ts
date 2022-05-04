@@ -9,11 +9,6 @@ import { tsRule } from './module';
 
 const { isDevMode, srcPatch } = Base.getConfig();
 
-
-
-
-
-
 const plugins = [
   // new BundleAnalyzerPlugin({ analyzerPort: 8888 }), // chunks 分析插件
   new CopyPlugin({ // 复制 sqlite数据库所需二进制文件

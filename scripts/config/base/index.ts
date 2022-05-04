@@ -15,7 +15,7 @@ class Base extends Utils {
   public isProMode: boolean;
   public cssPublicPath: string = '../';
   public srcPatch: string = path.join(__dirname, '../../../src');
-  public appConfig: { eslint: { emitError: boolean; emitWarning: boolean }; proxy: { '/api': string }; port: number };
+  public appConfig: { eslint: { emitError: boolean; emitWarning: boolean }; proxy?: any; port: number };
   constructor () {
     super();
     if (Base.instance) {

@@ -110,7 +110,6 @@ class Utils {
       exp: 'dbExp.sqlite',		// 体验环境
       pro: 'db.sqlite' 				// 生产环境
     };
-    const MODE = process.env.ENV;
     const databaseUrl = dbName[MODE];
     return {
       dbpath: path.join(app.getPath('userData'), databaseUrl),

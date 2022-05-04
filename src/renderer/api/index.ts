@@ -1,23 +1,10 @@
 import axios from 'axios';
 // import qs from 'qs';
 
-// switch (window.MODE) {
-//   case 'test':
-//     break;
-//   case 'pro':
-//     break;
-//   case 'exp':
-//     break;
-//   case 'dev':
-//     dev();
-// }
-
-// function dev () {
-//
-// }
+console.log('MODE:', MODE, NODE_ENV);
 
 // axios.defaults.baseURI =
 
 export const getUserInfo = async () => {
-  return axios.get('/api/');
+  return axios.get('http://localhost:8088/api/');
 };
