@@ -4,22 +4,22 @@ import { getWin } from '@/main/utils';
 class Shortcut {
   private win: BrowserWindow;
 
-  init () {
+  init() {
     this.win = getWin('mainWin');
     this.unregister();
     this.openTools(this.win);
   }
 
-  unregister () {
+  unregister() {
     globalShortcut.unregister('CommandOrControl+Shift+i');
   }
 
-  register (key, cb) {
+  register(key, cb) {
     globalShortcut.register(key, cb);
   }
 
   // 注册打开控制台快捷键
-  openTools (win) {
+  openTools(win) {
     this.register('CommandOrControl+Shift+C', () => {
       win.webContents.toggleDevTools();
     });
