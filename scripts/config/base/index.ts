@@ -42,7 +42,7 @@ class Base extends Utils {
     );
   };
 
-  setEnvParams = () => {
+  setEnvParams () {
     const nodeParams = this.nodeParams;
     if (nodeParams.mode) { // 运行模式, 本地运行 线上运行
       process.env.NODE_ENV = nodeParams.mode || 'development';

@@ -6,6 +6,9 @@ Base.init();
 
 const devRender = new DevRender(renderConfig);
 
-devRender.buildRender().then(res => {
-  console.log(res);
-}).catch(err => console.log(err));
+devRender
+  .buildRender()
+  .then((res) => {
+    console.log(res);
+  })
+  .catch((err) => console.log(err));

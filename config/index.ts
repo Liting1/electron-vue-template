@@ -6,5 +6,7 @@ export default {
     emitWarning: true, // 是否在控制台及应用界面输出eslint警告信息
     emitError: true,  // 是否在控制台及应用界面输出eslint错误信息
   },
-  proxy: {}
+  proxy: { // 代理配置
+
+  }
 };
