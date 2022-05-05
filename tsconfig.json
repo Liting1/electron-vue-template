@@ -13,7 +13,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@render/*": ["src/render/*"],
+      "@render/*": ["src/renderer/*"],
       "@main/*": ["src/main/*"]
     }
   },

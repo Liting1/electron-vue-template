@@ -6,6 +6,5 @@
   "bracketSameLine": true,
   "arrowParens": "always",
   "eslintIntegration": true,
-  "stylelintIntegration": true,
   "trailingComma": "none"
 }

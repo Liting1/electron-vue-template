@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { getUserInfo } from '@render/api';
 
 export default {

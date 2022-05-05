@@ -12,8 +12,6 @@
     "packager-build": "ts-node scripts/packagerBuild.ts env=dev mode=production && electron-packager ./ appName --win --out ./pack",
     "lint": "eslint src --ext .js,.ts,.tsx,.jsx,.vue --cache",
     "lint-fix": "eslint src --ext .js,.ts,.tsx,.jsx,.vue --cache --fix",
-    "stylelint": "stylelint src/**/*.{css,sass,scss,vue} --cache",
-    "stylelint-fix": "stylelint src/**/*.{css,sass,scss,vue} --cache --fix",
     "test": "node ./scripts/test.ts"
   },
   "keywords": [
