@@ -45,21 +45,25 @@ export default {
 <style scoped lang="sass">
 .control
   position: absolute
-  right: 0
   top: 0
-  height: 27px
+  right: 0
   display: flex
+  height: 27px
+
   >div
-    width: 48px
-    height: 100%
     display: flex
     align-items: center
     justify-content: center
+    width: 48px
+    height: 100%
     cursor: pointer
+
   .close:hover
     background-color: red
+
     .ios-close
       color: #fff
+
   .hover-color
     background-color: #eee
 </style>

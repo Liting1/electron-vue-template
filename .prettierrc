@@ -4,8 +4,8 @@
   "singleQuote": true,
   "bracketSpacing": true,
   "bracketSameLine": true,
-  "jsxBracketSameLine": true,
   "arrowParens": "always",
   "eslintIntegration": true,
+  "stylelintIntegration": true,
   "trailingComma": "none"
 }

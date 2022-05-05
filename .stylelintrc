@@ -1,1 +1,14 @@
-{}
+{
+  "extends": ["stylelint-config-standard", "stylelint-config-rational-order", "stylelint-prettier/recommended", "stylelint-config-recommended-vue"],
+  "plugins": ["stylelint-order"],
+  "overrides": [{
+    "files": ["src/**/*.{html,vue}"],
+    "customSyntax": "postcss-html"
+  }, {
+    "files": ["src/**/*.scss"],
+    "customSyntax": "postcss-scss"
+  },{
+    "files": ["src/**/*.sass"],
+    "customSyntax": "postcss-sass"
+  }]
+}

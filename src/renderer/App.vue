@@ -17,9 +17,10 @@ export default {
 
 <style scoped lang="sass">
 .app-container
+  display: flex
   height: 100vh
   overflow: hidden
-  display: flex
+
   .content
     flex: 9
 </style>

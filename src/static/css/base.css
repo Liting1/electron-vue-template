@@ -1,10 +1,13 @@
-html,body {
-	margin: 0;
-	padding: 0;
+html,
+body {
+  margin: 0;
+  padding: 0;
 }
+
 .drag {
-	-webkit-app-region: drag;
+  -webkit-app-region: drag;
 }
+
 .no-drag {
-	-webkit-app-region: no-drag;
+  -webkit-app-region: no-drag;
 }

@@ -1,8 +1,5 @@
 <template>
   <div class="nav-container drag">
-    <span><Icon type="ios-checkmark" /></span>
-    <span>99999</span>
-
     <Control />
   </div>
 </template>
@@ -19,7 +16,7 @@ export default {
 
 <style scoped lang="sass">
 .nav-container
-  height: 28px
   width: 100%
+  height: 28px
   border-bottom: 1px solid #ccc
 </style>

@@ -6,7 +6,7 @@
         <span>{{ item.price }}</span>
       </li>
     </ul>
-    <img src="@/assets/images/1.jpg" width="200" />
+    <img src="@render/assets/images/vue.png" width="200" alt="" />
     <img :src="imgUrl" />
     <div class="img"></div>
   </div>
@@ -48,11 +48,12 @@ export default {
 .header
 	ul
 		li
-			font-size: 20px
 			color: blue
+			font-size: 20px
+
 .header .img
   width: 300px
   height: 300px
+  background: '@/assets/images/tuite.png'
   border: solid 1px #000
-  background: url('@/assets/images/tuite.png')
 </style>
