@@ -1,12 +1,9 @@
-
 import mutation from './mutation';
 import action from './action';
 import getter from './getter';
 
 export default {
-  state: () => ({
-
-  }),
+  state: () => ({}),
   mutation,
   action,
   getter

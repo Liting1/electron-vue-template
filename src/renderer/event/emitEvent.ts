@@ -1,39 +1,38 @@
-
 import { ipcRenderer } from 'electron';
 // 在渲染线程触发 ———— 主线程监听的事件函数
 export default {
-  openInitiateWin () {
+  openInitiateWin() {
     ipcRenderer.send('open-initiate-win');
   },
-  openViewWin () {
+  openViewWin() {
     ipcRenderer.send('open-view-win');
   },
   // 手动检查应用更新
-  checkUpdate () {
+  checkUpdate() {
     ipcRenderer.send('check-update');
   },
   // 下载应用程序
-  downloadApp () {
+  downloadApp() {
     ipcRenderer.send('download-app');
   },
   // 下载完毕安装最新版程序
-  installationProgram () {
+  installationProgram() {
     ipcRenderer.send('isUpdateNow');
   },
   // 安装应用
-  isUpdateNow () {
+  isUpdateNow() {
     ipcRenderer.send('isUpdateNow');
   },
   // 主窗口最小化
-  minimizeMainWin () {
+  minimizeMainWin() {
     ipcRenderer.send('win-minimize');
   },
   // 主窗口最大化
-  maximizeMainWin () {
+  maximizeMainWin() {
     ipcRenderer.send('win-maximize');
   },
   // 隐藏窗口
-  closeWin () {
+  closeWin() {
     ipcRenderer.send('win-close');
   }
 };

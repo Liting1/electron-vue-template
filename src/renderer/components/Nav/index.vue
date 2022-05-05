@@ -1,10 +1,10 @@
 <template>
-<div class="nav-container drag">
-  <span><Icon type="ios-checkmark" /></span>
-  <span>99999</span>
+  <div class="nav-container drag">
+    <span><Icon type="ios-checkmark" /></span>
+    <span>99999</span>
 
-  <Control />
-</div>
+    <Control />
+  </div>
 </template>
 
 <script>
