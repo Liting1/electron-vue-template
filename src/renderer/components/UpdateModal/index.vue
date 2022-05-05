@@ -1,8 +1,8 @@
 <template>
-<div class="update-modal">
-  <h3>应用更新</h3>
-  <p>{{modalData.msg}}</p>
-</div>
+  <div class="update-modal">
+    <h3>应用更新</h3>
+    <p>{{ modalData.msg }}</p>
+  </div>
 </template>
 
 <script>
@@ -10,7 +10,7 @@ export default {
   name: 'UpdateModal',
   props: ['modalData'],
   methods: {
-    handleOk () {
+    handleOk() {
       // 调用下载
       if (this.modalData.status === 1) {
         this.$ev.downloadApp();
@@ -21,6 +21,4 @@ export default {
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -10,6 +10,8 @@
     "web-serve": "ts-node scripts/webServer.ts env=dev mode=development",
     "web-build": "ts-node scripts/webServer.ts env=dev mode=production",
     "packager-build": "ts-node scripts/packagerBuild.ts env=dev mode=production && electron-packager ./ appName --win --out ./pack",
+    "lint": "eslint src --ext .js,.ts,.tsx,.jsx,.vue --cache",
+    "lintFix": "eslint src --ext .js,.ts,.tsx,.jsx,.vue --cache --fix",
     "test": "node ./scripts/test.ts"
   },
   "keywords": [

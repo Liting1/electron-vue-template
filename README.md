@@ -48,6 +48,7 @@
 
 6. 若在运行打包时候出现如下错误`Error: Cannot find module 'fs/promises'` 则需要将本地的node版本升级到 14+ 以上版本方可解决
 
+7. prettier 配置进行修改时需要重启编辑器才能生效
 
 ### 功能
 1. 热加载开发
@@ -81,7 +82,6 @@
 ```
 
 ### 代办
-1. eslint
 2. stylelint
 3. 原生模块构建
 4. 自动更新

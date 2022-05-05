@@ -1,4 +1,3 @@
-
 import mutation from './mutation';
 import action from './action';
 import getter from './getter';

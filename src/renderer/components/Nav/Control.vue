@@ -1,53 +1,40 @@
 <template>
-<div class="control no-drag">
-  <div
-      class="min"
-      @mousemove="addClassName($event)"
-      @mouseleave="removeClassName($event)"
-      @click="minimize($event)">
-    <Icon type="ios-remove" size="24" color="#aaa" />
-  </div>
+  <div class="control no-drag">
+    <div class="min" @mousemove="addClassName($event)" @mouseleave="removeClassName($event)" @click="minimize($event)">
+      <Icon type="ios-remove" size="24" color="#aaa" />
+    </div>
 
-  <div
-      class="max"
-      @mousemove="addClassName($event)"
-      @mouseleave="removeClassName($event)"
-      @click="handleMax"
-  >
-      <Icon
-      v-if="isMax"
-      type="ios-browsers-outline"
-      color="#000"
-    />
-    <Icon v-else type="ios-square-outline" size="14" color="#000" />
+    <div class="max" @mousemove="addClassName($event)" @mouseleave="removeClassName($event)" @click="handleMax">
+      <Icon v-if="isMax" type="ios-browsers-outline" color="#000" />
+      <Icon v-else type="ios-square-outline" size="14" color="#000" />
+    </div>
+    <div class="close" @click="handleClose"><Icon class="ios-close" type="ios-close" size="24" /></div>
   </div>
-  <div class="close" @click="handleClose"><Icon class="ios-close" type="ios-close" size="24" /></div>
-</div>
 </template>
 
 <script>
 export default {
   name: 'Control',
-  data () {
+  data() {
     return {
       isMax: false
     };
   },
   methods: {
-    handleMax () {
+    handleMax() {
       this.isMax = !this.isMax;
       this.$ev.maximizeMainWin();
     },
-    addClassName (ele) {
+    addClassName(ele) {
       ele.currentTarget.classList.add('hover-color');
     },
-    removeClassName (ele) {
+    removeClassName(ele) {
       ele.currentTarget.classList.remove('hover-color');
     },
-    handleClose () {
+    handleClose() {
       this.$ev.closeWin();
     },
-    minimize (ele) {
+    minimize(ele) {
       this.removeClassName(ele);
       this.$ev.minimizeMainWin();
     }
