@@ -54,6 +54,6 @@ export default {
 .header .img
   width: 300px
   height: 300px
-  background: '@/assets/images/tuite.png'
+  color: #666
   border: solid 1px #000
 </style>
