@@ -7,6 +7,7 @@ const eslintConfig = appConfig.eslint;
 export default new ESLintPlugin({
   extensions: ['ts', 'js', 'vue', 'tsx'],
   threads: true,
+  exclude: 'node_modules',
   emitError: eslintConfig.emitError,
   emitWarning: eslintConfig?.emitWarning	// 如果出现eslint错误将会在控制台输出警告
 });

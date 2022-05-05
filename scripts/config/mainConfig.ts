@@ -17,7 +17,7 @@ const plugins = [
     }]
   }),
   DefinePlugin,
-  ProgressPlugin,
+  ProgressPlugin
 ];
 
 if (isDevMode) {
@@ -37,6 +37,7 @@ export default {
   devtool: isDevMode ? 'inline-source-map': undefined,
   watch: isDevMode,
   optimization: {
+    emitOnErrors: true,
     minimize: true
   },
   node: {

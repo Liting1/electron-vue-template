@@ -10,29 +10,31 @@ class DevRender {
   private readonly options: any;
   private compiler: webpack.Compiler;
   private server: any;
-  constructor (options = {}) {
+  constructor(options = {}) {
     this.options = options;
   }
 
-  buildRender () {
+  buildRender() {
     this.compiler = webpack(this.options);
     const { output } = this.options;
     return new Promise((resolve, reject) => {
       if (isDevMode) {
-        this.server = new WebpackDevServer({
-          static: output.path,
-          compress: true, // 开发服务器启用gzip压缩
-          port: appConfig.port,
-          hot: true
-        }, this.compiler);
+        this.server = new WebpackDevServer(
+          {
+            static: output.path,
+            compress: true, // 开发服务器启用gzip压缩
+            port: appConfig.port,
+            hot: true,
+            proxy: appConfig.proxy
+          },
+          this.compiler
+        );
         this.server.start().then(() => {
           console.log('启动服务成功');
         });
       } else {
-        this.compiler.run(err => {
-          err
-            ? reject(chalk.red('打包渲染进程错误:' + err))
-            : resolve(chalk.green('打包渲染进程完毕！'));
+        this.compiler.run((err) => {
+          err ? reject(chalk.red('打包渲染进程错误:' + err)) : resolve(chalk.green('打包渲染进程完毕！'));
         });
       }
     });

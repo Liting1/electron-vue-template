@@ -33,7 +33,8 @@ const options = {
     chunkFilename: 'js/[name].bundle.js'
   },
   optimization: {
-    emitOnErrors: true
+    emitOnErrors: true,
+    minimize: true
   },
   resolve: {
     // 引入文件时可以省略文件后缀名
