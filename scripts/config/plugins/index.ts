@@ -7,6 +7,7 @@ import VueLoaderPlugin from './VueLoaderPlugin';
 import ESLintPlugin from './ESLintPlugin';
 import DefinePlugin from './DefinePlugin';
 import ProgressPlugin from './ProgressPlugin';
+import ForkTsCheckerWebpackPlugin from './ForkTsCheckerWebpackPlugin';
 
 export {
   CleanWebpackPlugin,
@@ -17,5 +18,6 @@ export {
   VueLoaderPlugin,
   ESLintPlugin,
   DefinePlugin,
-  ProgressPlugin
+  ProgressPlugin,
+  ForkTsCheckerWebpackPlugin
 };

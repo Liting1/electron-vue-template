@@ -3,10 +3,20 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 import Base from './base';
 import { cssRule, fontRule, imageRule, nodeRule, sassRule, tsRule, vueRule } from './module';
-import { HtmlWebpackPlugin, MiniCssExtractPlugin, VueLoaderPlugin, CopyPlugin, SplitChunksPlugin, DefinePlugin, ESLintPlugin, ProgressPlugin } from './plugins';
+import {
+  HtmlWebpackPlugin,
+  MiniCssExtractPlugin,
+  VueLoaderPlugin,
+  CopyPlugin,
+  SplitChunksPlugin,
+  DefinePlugin,
+  ESLintPlugin,
+  ProgressPlugin,
+  ForkTsCheckerWebpackPlugin
+} from './plugins';
 const { isDevMode, srcPatch, appConfig } = Base.getConfig();
 
-const plugins = [ProgressPlugin, HtmlWebpackPlugin, MiniCssExtractPlugin, VueLoaderPlugin, CopyPlugin, DefinePlugin, SplitChunksPlugin, ESLintPlugin];
+const plugins = [ProgressPlugin, HtmlWebpackPlugin, MiniCssExtractPlugin, VueLoaderPlugin, CopyPlugin, DefinePlugin, SplitChunksPlugin, ForkTsCheckerWebpackPlugin, ESLintPlugin];
 
 // server
 plugins.push(new BundleAnalyzerPlugin({
