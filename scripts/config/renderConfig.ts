@@ -3,16 +3,16 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 import Base from './base';
 import { cssRule, fontRule, imageRule, nodeRule, sassRule, tsRule, vueRule } from './module';
-import { CleanWebpackPlugin, HtmlWebpackPlugin, MiniCssExtractPlugin, VueLoaderPlugin, CopyPlugin, SplitChunksPlugin, DefinePlugin, ESLintPlugin, ProgressPlugin } from './plugins';
-const { isDevMode, srcPatch, isProMode } = Base.getConfig();
+import { HtmlWebpackPlugin, MiniCssExtractPlugin, VueLoaderPlugin, CopyPlugin, SplitChunksPlugin, DefinePlugin, ESLintPlugin, ProgressPlugin } from './plugins';
+const { isDevMode, srcPatch, appConfig } = Base.getConfig();
 
-const plugins = [ProgressPlugin, HtmlWebpackPlugin, MiniCssExtractPlugin, VueLoaderPlugin, CopyPlugin, SplitChunksPlugin, DefinePlugin, ESLintPlugin];
+const plugins = [ProgressPlugin, HtmlWebpackPlugin, MiniCssExtractPlugin, VueLoaderPlugin, CopyPlugin, DefinePlugin, SplitChunksPlugin, ESLintPlugin];
 
-if (isProMode) {
-  plugins.push(CleanWebpackPlugin);
-}
-
-// plugins.push(new BundleAnalyzerPlugin({ analyzerPort: 8888 }))
+// server
+plugins.push(new BundleAnalyzerPlugin({
+  analyzerPort: 8088,
+  analyzerMode: appConfig.analyzerMode ? 'server' : 'disabled',
+}))
 
 const options = {
   mode: isDevMode ? 'development' : 'production',
@@ -30,11 +30,16 @@ const options = {
     path: path.join(srcPatch, '../app/'),
     publicPath: isDevMode ? '/' : './',
     filename: 'js/[name].[contenthash].js',
-    chunkFilename: 'js/[name].bundle.js'
+    chunkFilename: 'js/[name].bundle.js',
+    clean: true
   },
   optimization: {
-    emitOnErrors: true,
-    minimize: true
+    chunkIds: 'named',
+    emitOnErrors: isDevMode,
+    minimize: true,
+    splitChunks: {
+      chunks: 'all'
+    }
   },
   resolve: {
     // 引入文件时可以省略文件后缀名

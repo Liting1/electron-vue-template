@@ -7,7 +7,7 @@ Base.init();
 const devRender = new DevRender(renderConfig);
 
 devRender
-  .buildRender()
+  .buildRender('web')
   .then((res) => {
     console.log(res);
   })

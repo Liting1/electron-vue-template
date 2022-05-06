@@ -14,7 +14,8 @@ class DevRender {
     this.options = options;
   }
 
-  buildRender() {
+  buildRender(scene = 'electron') {
+    const open = scene === 'web';
     this.compiler = webpack(this.options);
     const { output } = this.options;
     return new Promise((resolve, reject) => {
@@ -25,6 +26,7 @@ class DevRender {
             compress: true, // 开发服务器启用gzip压缩
             port: appConfig.port,
             hot: true,
+            open,
             proxy: appConfig.proxy
           },
           this.compiler

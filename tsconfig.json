@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "Commonjs",
+    "module": "ESNext",
     "target": "es5",
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
@@ -15,6 +15,11 @@
       "@/*": ["src/*"],
       "@render/*": ["src/renderer/*"],
       "@main/*": ["src/main/*"]
+    }
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
     }
   },
   "exclude": [

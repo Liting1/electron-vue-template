@@ -1,7 +1,3 @@
-import Home from '@render/views/Home.vue';
-import Login from '@render/views/Login.vue';
-import Demo from '@render/views/Demo.vue';
-
 const routes = [
   {
     path: '/',
@@ -11,17 +7,17 @@ const routes = [
   {
     name: 'home',
     path: '/home',
-    component: Home
+    component: () => import(/* webpackChunkName: "home" */ '@render/views/Home.vue')
   },
   {
     name: 'demo',
     path: '/demo',
-    component: Demo
+    component: () => import(/* webpackChunkName: "demo" */ '@render/views/Demo.vue')
   },
   {
     name: 'path',
     path: '/login',
-    component: Login
+    component: () => import(/* webpackChunkName: "login" */ '@render/views/Login.vue')
   }
 ];
 

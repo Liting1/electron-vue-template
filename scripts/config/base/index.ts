@@ -1,6 +1,7 @@
 import path from 'path';
 import Utils from './utils';
-import appConfig from '../../../config'
+import appConfig from '../../../config';
+
 class Base extends Utils {
   static instance: Base;
   static init: () => Base;

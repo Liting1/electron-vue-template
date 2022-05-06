@@ -2,16 +2,16 @@
 
 + __使用 Vue.js + Electron 快速开发跨平台桌面应用及web应用__
 
-![electron](https://img.shields.io/badge/electron-18.2.0-blue)
+![electron](https://img.shields.io/badge/electron-v18.2.0-blue)
 ![vue](https://img.shields.io/npm/v/vue?label=vue)
-![node](https://img.shields.io/badge/node-16.13.2-success)
-![npm](https://img.shields.io/badge/npm-8.1.2-success)
-![webpack](https://img.shields.io/badge/webpack-5.72.0-blue)
-![typescript](https://img.shields.io/badge/typescript-4.6.4-blue)
-![sql.js](https://img.shields.io/badge/sql.js-1.6.2-orange)
-![vue-devtools](https://img.shields.io/badge/vue--devtools-6.1.4-orange)
-![vue-router](https://img.shields.io/badge/vue--router-4.0.14-orange)
-![vuex](https://img.shields.io/badge/vuex-4.0.2-orange)
+![node](https://img.shields.io/badge/node-v16.13.2-success)
+![npm](https://img.shields.io/badge/npm-v8.1.2-success)
+![webpack](https://img.shields.io/badge/webpack-v5.72.0-blue)
+![typescript](https://img.shields.io/badge/typescript-v4.6.4-blue)
+![sql.js](https://img.shields.io/badge/sql.js-v1.6.2-orange)
+![vue-devtools](https://img.shields.io/badge/vue--devtools-v6.1.4-orange)
+![vue-router](https://img.shields.io/badge/vue--router-v4.0.14-orange)
+![vuex](https://img.shields.io/badge/vuex-v4.0.2-orange)
 
 > __npm 下载源 https://registry.npm.taobao.org/__
 
@@ -84,7 +84,7 @@
 ```
 
 ### 代办
-2. stylelint
+2. 打包构建优化
 3. 原生模块构建
 4. 自动更新
 5. 项目可配置化

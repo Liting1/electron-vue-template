@@ -9,7 +9,7 @@ export default new webpack.optimize.SplitChunksPlugin({
     },
     // 打包重复出现的代码
     vendor: {
-      name: 'vendor',
+      filename: 'vendor',
       chunks: 'initial',
       minChunks: 2,
       maxInitialRequests: 5,
@@ -17,7 +17,7 @@ export default new webpack.optimize.SplitChunksPlugin({
     },
     // 打包第三方类库
     commons: {
-      name: 'commons',
+      filename: 'commons',
       chunks: 'initial',
       minChunks: Infinity
     }
