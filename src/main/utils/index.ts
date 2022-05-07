@@ -1,4 +1,5 @@
 import { BrowserWindow } from 'electron';
+import path from 'path';
 
 const getWin = (title) => BrowserWindow.getAllWindows().filter((wins) => wins.title === title)[0];
 
@@ -10,4 +11,6 @@ const log = (...arg) => {
   });
 };
 
-export { getWin, log };
+const STATIC_PATH = MODE === 'development' ? path.join(__dirname, '../../static') : path.join(__dirname, './static');
+
+export { getWin, log, STATIC_PATH };

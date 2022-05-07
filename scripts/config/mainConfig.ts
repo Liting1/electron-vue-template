@@ -36,7 +36,7 @@ export default {
   mode: isDevMode ? 'development' : 'production',
   watch: isDevMode,
   optimization: {
-    emitOnErrors: true,
+    emitOnErrors: isDevMode,
     minimize: true
   },
   node: {

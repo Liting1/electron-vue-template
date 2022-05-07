@@ -38,6 +38,7 @@
     "APP_ENV": "readonly",
     "MODE": "readonly",
     "VERSION": "readonly",
+    "STATIC_PATCH": "readonly",
     "NodeJS": "readonly",
     "Electron": "readonly"
   }
