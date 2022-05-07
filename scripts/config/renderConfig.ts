@@ -41,7 +41,6 @@ const options = {
     publicPath: isDevMode ? '/' : './',
     filename: 'js/[name].[contenthash].js',
     chunkFilename: 'js/[name].bundle.js',
-    clean: true
   },
   optimization: {
     chunkIds: 'named',

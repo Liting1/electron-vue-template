@@ -1,6 +1,7 @@
 import Base from './config/base';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
+import merge from 'webpack-merge';
 import chalk from 'chalk';
 
 const { isDevMode, appConfig } = Base.getConfig();
@@ -15,8 +16,14 @@ class DevRender {
   }
 
   buildRender(scene = 'electron') {
-    const open = scene === 'web';
-    this.compiler = webpack(this.options);
+    const isWeb = scene === 'web';
+    this.compiler = webpack(
+      merge(this.options, {
+        output: {
+          clean: isWeb
+        }
+      })
+    );
     const { output } = this.options;
     return new Promise((resolve, reject) => {
       if (isDevMode) {
@@ -26,7 +33,7 @@ class DevRender {
             compress: true, // 开发服务器启用gzip压缩
             port: appConfig.port,
             hot: true,
-            open,
+            open: isWeb,
             proxy: appConfig.proxy
           },
           this.compiler

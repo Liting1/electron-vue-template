@@ -1,4 +1,4 @@
-import { BrowserWindow } from 'electron';
+import { BrowserWindow, app } from 'electron';
 import path from 'path';
 
 const getWin = (title) => BrowserWindow.getAllWindows().filter((wins) => wins.title === title)[0];
@@ -12,5 +12,7 @@ const log = (...arg) => {
 };
 
 const STATIC_PATH = MODE === 'development' ? path.join(__dirname, '../../static') : path.join(__dirname, './static');
+const PRELOAD_SCRIPT_PATH =
+  MODE === 'development' ? path.join(app.getAppPath(), 'app/preloadScript') : path.join(__dirname, './preloadScript');
 
-export { getWin, log, STATIC_PATH };
+export { getWin, log, STATIC_PATH, PRELOAD_SCRIPT_PATH };

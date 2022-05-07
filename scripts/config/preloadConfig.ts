@@ -46,5 +46,5 @@ export default {
     __filename: false,
   },
   target: 'electron-preload',
-  watch: true
+  watch: isDevMode
 }

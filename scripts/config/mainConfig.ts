@@ -31,7 +31,10 @@ export default {
   },
   output: {
     path: path.join(srcPatch, '../app'),
-    filename: '[name].js'
+    filename: '[name].js',
+    library: {
+      type: 'commonjs2'
+    }
   },
   mode: isDevMode ? 'development' : 'production',
   watch: isDevMode,

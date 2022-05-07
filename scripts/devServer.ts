@@ -28,7 +28,7 @@ function developmentBuild() {
 
 function productionBuild() {
   del(['./app/*', './pack/*']).then(() => {
-    Promise.all([devMain.buildMain(), devRender.buildRender()])
+    Promise.all([devMain.buildMain(), devRender.buildRender(), devPreload.buildPreload()])
       .then((res) => {
         res.forEach((item) => console.log(item));
         const openPath = path.join(__dirname, '../pack');

@@ -1,6 +1,6 @@
 import { BrowserWindow } from 'electron';
 import path from 'path';
-import { STATIC_PATH } from '@main/utils';
+import { STATIC_PATH, PRELOAD_SCRIPT_PATH } from '@main/utils';
 
 class MainWindow {
   private options: Record<string, any>;
@@ -20,7 +20,7 @@ class MainWindow {
       show: false, // 创建窗口后不显示窗口
       hasShadow: false,
       webPreferences: {
-        preload: '',
+        preload: path.join(PRELOAD_SCRIPT_PATH, 'mainView/index.js'),
         // contextIsolation: true,
         webSecurity: false // 是否开启跨域
         // nodeIntegration: true // 在渲染进程引入node模块
