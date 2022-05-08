@@ -1,5 +1,4 @@
 import { app, Tray, Menu, nativeImage, shell, BrowserWindow } from 'electron';
-import path from 'path';
 import { getWin, STATIC_PATH } from '@/main/utils';
 export default class {
   private tray: Tray;
@@ -13,11 +12,7 @@ export default class {
   init() {
     // Menu.setApplicationMenu(null);  // 清除默认的顶部菜单
     app.whenReady().then(() => {
-      const imgPath = path.join(STATIC_PATH, 'img/icon.jpg');
-      // console.log(path.join('./static', 'img/icon.jpg'));
-      // this.options.mode === 'development'
-      //   ? path.join(__dirname, '../../static/img/icon.jpg')
-      //   : path.join(__dirname, './static/img/icon.jpg');
+      const imgPath = `${STATIC_PATH}/img/icon.jpg`;
 
       const image = nativeImage.createFromPath(imgPath);
       this.tray = new Tray(image);
