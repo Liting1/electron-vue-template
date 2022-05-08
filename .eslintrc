@@ -25,7 +25,7 @@
     "max-params": ["error", 4] // 函数最多四个参数
   },
   "parser": "vue-eslint-parser",
-  "plugins": ["@typescript-eslint", "vue"],
+  "plugins": ["@typescript-eslint", "vue", "html"],
   "settings": {
     "import/resolver": {
       "node": {

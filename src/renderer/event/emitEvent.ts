@@ -4,9 +4,7 @@ export default {
   openInitiateWin() {
     ipcRenderer.send('open-initiate-win');
   },
-  openViewWin() {
-    ipcRenderer.send('open-view-win');
-  },
+
   // 手动检查应用更新
   checkUpdate() {
     ipcRenderer.send('check-update');

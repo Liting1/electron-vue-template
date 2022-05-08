@@ -3,6 +3,7 @@
     <ul class="nav nav-pills nav-stacked">
       <li role="presentation"><router-link to="/home">首页</router-link></li>
       <li role="presentation"><router-link to="/demo">基础演示</router-link></li>
+      <li role="presentation"><router-link to="/NotFound">NotFound</router-link></li>
     </ul>
   </div>
 </template>

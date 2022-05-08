@@ -1,3 +1,5 @@
+import NotFound from '@render/views/Error.vue';
+
 const routes = [
   {
     path: '/',
@@ -18,6 +20,11 @@ const routes = [
     name: 'path',
     path: '/login',
     component: () => import(/* webpackChunkName: "login" */ '@render/views/Login.vue')
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: NotFound
   }
 ];
 

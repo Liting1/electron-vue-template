@@ -1,3 +1,5 @@
+import { ipcRenderer } from 'electron';
+
 const { contextBridge } = require('electron');
 
 class MainView {
@@ -19,6 +21,9 @@ class MainView {
         };
 
         // notice.icon
+      },
+      openViewWin() {
+        ipcRenderer.send('open-view-win');
       }
     });
   }

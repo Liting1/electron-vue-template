@@ -20,7 +20,7 @@ class RegisterEvent {
   }
 
   getPath(file) {
-    const url = process.env.NODE_ENV === 'development' ? '../../pages/html/' : 'pages/html/';
+    const url = MODE === 'development' ? '../../pages/html/' : 'pages/html/';
     return path.join(__dirname, url + file);
   }
 

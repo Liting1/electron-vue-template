@@ -26,9 +26,7 @@ const createViewWin = (options = {}) => {
       title: 'viewWin',
       width: 600,
       height: 600,
-      webPreferences: {
-        nodeIntegration: true // 默认是false
-      }
+      webPreferences: {}
     },
     options
   );
