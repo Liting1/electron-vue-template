@@ -68,25 +68,30 @@
 ```
 |—— app               项目打包后输出的源文件目录
 |—— pack              打包成App的输出目录
-|—— builder           webpack 构建应用配置目录
+|—— scripts           webpack 构建应用配置目录
 |—— doc               项目文档和所需文件目录
 |—— config            应用打包配置目录
 |—— src               项目资源目录
-|	 |—— main             主线程文件目录
-|	 |—— pages            其他渲染页面--子窗口页面
-|	 |—— renderer	        主渲染线程目录
-|    |—— static           静态资源目录
+|   |—— main             主线程文件目录
+|   |—— pages            其他渲染页面--子窗口页面
+|   |—— renderer	        主渲染线程目录
+|   |—— static           静态资源目录
+|—— .editorconfig       编辑器配置文件
+|—— .eslintignore       eslint-ignore配置文件
+|—— .eslintrc           eslint配置文件
 |—— .gitignore          git 配置文件
 |—— package-lock.json
 |—— package.json
 |—— README.md
+|—— shims-vue.d.ts      ts解注 .vue 文件
+|—— tsconfig.json       ts配置文件
 
 ```
 
 ### 代办
+1. 多页面打包
 2. 打包构建优化
 3. 原生模块构建
 4. 自动更新
 5. 项目可配置化
-6. 主线程打包路径问题
-7. 主线程打包资源问题
+6. 性能及安全问题

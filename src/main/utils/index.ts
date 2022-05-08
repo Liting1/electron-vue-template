@@ -11,7 +11,9 @@ const log = (...arg) => {
   });
 };
 
+// static 静态文件夹目录
 const STATIC_PATH = MODE === 'development' ? path.join(__dirname, '../../static') : path.join(__dirname, './static');
+// preload 脚本目录
 const PRELOAD_SCRIPT_PATH =
   MODE === 'development' ? path.join(app.getAppPath(), 'app/preloadScript') : path.join(__dirname, './preloadScript');
 
