@@ -9,8 +9,6 @@
 <div>
   <ul>
     <li>请用,(单字节)分割数字,0-999之间的数字</li>
-    <li>">"一个一个节点插入</li>
-    <li>">>"一次性插入所有节点</li>
     <li>双击节点删除</li>
     <li><input type="button" value="随机增加一个节点" onclick="AddRandom()"/></li>
   </ul>
@@ -561,7 +559,6 @@
     const text = new createjs.Text(number, '16px Arial', '#fff');
     text.x = textX;
     text.y = -8;
-
     const graphics = new createjs.Graphics();
     graphics.setStrokeStyle(1);
     graphics.beginStroke(createjs.Graphics.getRGB(0, 0, 255));
