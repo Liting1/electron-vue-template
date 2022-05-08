@@ -2,7 +2,7 @@
   <div class="demo">
     <button class="btn btn-success">打开一个新的窗口</button>
     <button class="btn btn-success" @click="handleClick">发送请求</button>
-    <div class="border-test">111111</div>
+    <button class="btn btn-info" @click="handleNotice">点击通知</button>
   </div>
 </template>
 
@@ -15,15 +15,15 @@ export default {
     async handleClick() {
       const res = await getUserInfo();
       console.log('res:', res);
+    },
+    handleNotice() {
+      window.electronAPI.showNotification('Hello MT', new Date().toDateString());
     }
   }
 };
 </script>
 
 <style scoped lang="sass">
-.border-test
-  width: 20px
-  margin: 20px
-  color: #ccc
-  border: 1px solid #222
+.btn
+  margin-right: 10px
 </style>

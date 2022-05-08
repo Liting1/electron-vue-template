@@ -5,12 +5,6 @@ declare global {
   const VERSION: string;
   const MODE: string;
   const APP_ENV: string;
-
-  interface Window {
-    readonly VERSION: string;
-    readonly APP_ENV: string;
-    readonly MODE: string;
-  }
 }
 
 export default new webpack.DefinePlugin({

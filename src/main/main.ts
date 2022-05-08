@@ -17,6 +17,7 @@ class App {
   private win: Electron.BrowserWindow;
   private tray: Tray;
   private config: typeof appConfig;
+  static init: (electron) => App;
   constructor({ app, BrowserWindow }) {
     this.app = app;
     this.config = appConfig;
@@ -92,5 +93,8 @@ class App {
   }
 }
 
-// eslint-disable-next-line no-unused-vars
-const app = new App(electron);
+App.init = (electron) => {
+  return new App(electron);
+};
+
+App.init(electron);

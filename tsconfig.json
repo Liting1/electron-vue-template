@@ -25,5 +25,5 @@
   "exclude": [
     "node_modules"
   ],
-  "include": ["src", "scripts", "shims-vue.d.ts"]
+  "include": ["./src", "./scripts", "shims-vue.d.ts"]
 }
