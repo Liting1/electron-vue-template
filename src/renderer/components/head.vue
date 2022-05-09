@@ -7,11 +7,11 @@
       </li>
     </ul>
     <img src="@render/assets/images/vue.png" width="200" alt="" />
-    <img :src="imgUrl" />
+    <img :src="imgUrl" alt="" />
     <div class="img"></div>
   </div>
 </template>
-<script>
+<script lang="ts">
 export default {
   data() {
     return {
