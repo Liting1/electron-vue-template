@@ -3,6 +3,9 @@ import DevMain from './devMain';
 import mainConfig from './config/mainConfig';
 import DevRender from './devRender';
 import renderConfig from './config/renderConfig';
+import Base from './config/base';
+
+Base.init({ renderEnv: 'electron' });
 
 const devMain = new DevMain(mainConfig);
 const devRender = new DevRender(renderConfig);

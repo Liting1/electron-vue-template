@@ -4,19 +4,23 @@ import WebpackDevServer from 'webpack-dev-server';
 import merge from 'webpack-merge';
 import chalk from 'chalk';
 
-const { isDevMode, appConfig } = Base.getConfig();
-
 class DevRender {
   static init;
   private readonly options: any;
   private compiler: webpack.Compiler;
   private server: any;
-  constructor(options = {}) {
-    this.options = options;
+  constructor(options: any) {
+    if (typeof options === 'function') {
+      this.options = options();
+    }
+    if (typeof options === 'object' && options !== null) {
+      this.options = options;
+    }
   }
 
-  buildRender(scene = 'electron') {
-    const isWeb = scene === 'web';
+  buildRender() {
+    const { isDevMode, appConfig, options } = Base.getConfig();
+    const isWeb = options.renderEnv === 'browser';
     this.compiler = webpack(
       merge(this.options, {
         output: {

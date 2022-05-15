@@ -1,6 +1,6 @@
 import webpack from 'webpack';
 
-export default new webpack.optimize.SplitChunksPlugin({
+export default () => new webpack.optimize.SplitChunksPlugin({
   cacheGroups: {
     default: {
       minChunks: 2,

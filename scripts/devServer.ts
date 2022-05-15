@@ -10,7 +10,7 @@ import path from 'path';
 import Base from './config/base';
 
 // 初始化基础信息
-const { isDevMode, openExplorer } = Base.init();
+const { isDevMode, openExplorer } = Base.init({ renderEnv: 'electron' });
 
 const devMain = new DevMain(mainConfig);
 const devRender = new DevRender(renderConfig);

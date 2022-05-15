@@ -1,5 +1,5 @@
 
-export default { // 配置图片文件加载
+export default () => ({ // 配置图片文件加载
   test: /\.(png|jpe?g|gif|tif?f|bmp|webp|svg)(\?.*)?$/,
   use: {
     loader: 'url-loader',
@@ -9,4 +9,4 @@ export default { // 配置图片文件加载
       name: 'images/[name].[hash].[ext]'
     }
   }
-};
+});

@@ -4,7 +4,12 @@ import chalk from 'chalk';
 class DevMain {
   private readonly options: any;
   constructor(options) {
-    this.options = options;
+    if (typeof options === 'function') {
+      this.options = options();
+    }
+    if (typeof options === 'object' && options !== null) {
+      this.options = options;
+    }
   }
 
   buildMain() {

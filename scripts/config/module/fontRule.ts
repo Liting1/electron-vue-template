@@ -1,5 +1,5 @@
 
-export default { // 配置字体文件加载
+export default () => ({ // 配置字体文件加载
   test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
   use: {
     loader: 'file-loader',
@@ -9,4 +9,4 @@ export default { // 配置字体文件加载
       name: 'fonts/[name].[hash].[ext]'
     }
   }
-};
+});

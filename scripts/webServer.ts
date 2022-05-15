@@ -2,11 +2,11 @@ import Base from './config/base';
 import DevRender from './devRender';
 import renderConfig from './config/renderConfig';
 
-Base.init();
+Base.init({ renderEnv: 'browser' });
 const devRender = new DevRender(renderConfig);
 
 devRender
-  .buildRender('web')
+  .buildRender()
   .then((res) => {
     console.log(res);
   })

@@ -58,12 +58,12 @@ class Base extends Utils {
   };
 }
 
-Base.init = () => {
-  return new Base();
+Base.init = (options = {}) => {
+  return new Base(options);
 };
 Base.getConfig = () => {
   if (Base.instance) { return Base.instance; }
-  return new Base();
+  return new Base({});
 };
 
 export default Base;
