@@ -7,6 +7,10 @@ export default {
     emitError: true,  // 是否在控制台及应用界面输出eslint错误信息
   },
   proxy: { // 代理配置
-
+    '/api': {
+      target: 'http://liting.ltd',
+      changeOrigin: true,
+      pathRewrite: { '^/api': '' },
+    }
   }
 };

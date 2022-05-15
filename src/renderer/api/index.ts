@@ -29,7 +29,7 @@ axios.interceptors.response.use(
 );
 
 const xhr = axios.create({
-  baseURL: 'http://liting.ltd'
+  baseURL: MODE === 'development' ? '/api' : 'http://liting.ltd'
 });
 
 export const getUserInfo = async () => {

@@ -8,7 +8,6 @@
 
 <script lang="ts">
 import { getUserInfo } from '@render/api';
-
 export default {
   name: 'Demo',
   methods: {
@@ -23,13 +22,17 @@ export default {
      * 系统通知
      */
     handleNotice() {
-      window.electronAPI.showNotification('Hello MT', new Date().toDateString());
+      if (window.electronAPI) {
+        window.electronAPI.showNotification('Hello MT', new Date().toDateString());
+      }
     },
     /**
      * 打开窗口
      */
     handleOpen() {
-      window.electronAPI.openViewWin();
+      if (window.electronAPI) {
+        window.electronAPI.openViewWin();
+      }
     }
   }
 };

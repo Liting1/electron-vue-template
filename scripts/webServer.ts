@@ -3,7 +3,6 @@ import DevRender from './devRender';
 import renderConfig from './config/renderConfig';
 
 Base.init();
-
 const devRender = new DevRender(renderConfig);
 
 devRender

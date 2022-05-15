@@ -38,6 +38,7 @@
     "APP_ENV": "readonly",
     "MODE": "readonly",
     "VERSION": "readonly",
+    "IS_BROWSER_ENV":  "readonly",
     "NodeJS": "readonly",
     "Electron": "readonly"
   }

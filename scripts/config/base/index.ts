@@ -4,7 +4,7 @@ import appConfig from '../../../config';
 
 class Base extends Utils {
   static instance: Base;
-  static init: () => Base;
+  static init: (options?: Record<string, any>) => Base;
   static getConfig: () => Base;
   public nodeParams: {
     env: 'dev' | 'test' | 'exp' | 'pro';
@@ -17,11 +17,13 @@ class Base extends Utils {
   public cssPublicPath: string = '../';
   public srcPatch: string = path.join(__dirname, '../../../src');
   public appConfig: typeof appConfig;
-  constructor () {
+  public options: Record<string, any>;
+  constructor (options = {}) {
     super();
     if (Base.instance) {
       return Base.instance;
     }
+    this.options = options;
     this.init();
     this.appConfig = appConfig;
     Base.instance = this;
