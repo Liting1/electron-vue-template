@@ -17,6 +17,11 @@ export default {
     ...(
       isDevMode ? devUse : proUse
     ),
-    'css-loader'
+    {
+      loader: 'css-loader',
+      options: {
+        sourceMap: isDevMode
+      }
+    }
   ]
 };

@@ -15,7 +15,7 @@
 export default {
   data() {
     return {
-      imgUrl: require('@/assets/images/result.png'),
+      imgUrl: require('@render/assets/images/result.png'),
       goodsList: [
         {
           id: 1,

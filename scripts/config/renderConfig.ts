@@ -22,7 +22,7 @@ const plugins = [ProgressPlugin, HtmlWebpackPlugin, MiniCssExtractPlugin, VueLoa
 plugins.push(new BundleAnalyzerPlugin({
   analyzerPort: 8088,
   analyzerMode: appConfig.analyzerMode ? 'server' : 'disabled',
-}))
+}));
 
 const options = {
   mode: isDevMode ? 'development' : 'production',
@@ -52,7 +52,7 @@ const options = {
   },
   resolve: {
     // 引入文件时可以省略文件后缀名
-    extensions: ['.ts', '.js', '.json', '.vue', '.jsx', '.tsx'],
+    extensions: ['.ts', '.vue', '.js', '.json', '.jsx', '.tsx'],
     // 常用路径别名
     alias: {
       '@': path.join(srcPatch),

@@ -19,5 +19,5 @@ export {
   ESLintPlugin,
   DefinePlugin,
   ProgressPlugin,
-  ForkTsCheckerWebpackPlugin
+  ForkTsCheckerWebpackPlugin,
 };

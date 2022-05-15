@@ -23,7 +23,8 @@ const getUse = (bool = false) => [
     options: {
       sassOptions: {
         indentedSyntax: bool // 如需使用花括号嵌套模式则设置为 false
-      }
+      },
+      sourceMap: isDevMode
     }
   }
 ];
