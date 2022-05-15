@@ -9,7 +9,7 @@
     "publish": "npm version patch && npm run build",
     "web-serve": "ts-node scripts/webServer.ts env=dev mode=development",
     "web-build": "ts-node scripts/webServer.ts env=dev mode=production",
-    "packager-build": "ts-node scripts/packagerBuild.ts env=dev mode=production && electron-packager ./ appName --win --out ./pack",
+    "packager-build": "ts-node scripts/packagerBuild.ts env=dev mode=production && electron-packager ./ electron-vue --win --out ./pack --overwrite --ignore=.idea",
     "lint": "eslint src --ext .js,.ts,.tsx,.jsx,.vue --cache",
     "lint-fix": "eslint src --ext .js,.ts,.tsx,.jsx,.vue --cache --fix",
     "test": "ts-node ./scripts/test.ts"
@@ -44,7 +44,7 @@
     "electron": "^18.2.0",
     "electron-builder": "^23.0.3",
     "electron-dev-webpack-plugin": "^1.0.5",
-    "electron-packager": "^15.3.0",
+    "electron-packager": "^15.5.1",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard": "^16.0.3",
