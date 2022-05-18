@@ -57,7 +57,7 @@
 2. 打包生成App
 3. 应用更新
 5. vue3 + typescript 全家桶
-7. sass
+7. sass/scss
 8. ts-node
 9. 支持 vue-devtools 调试
 
