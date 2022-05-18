@@ -86,7 +86,7 @@
 |   |   |—— utils                     工具目录
 |   |   |—— main.ts                   主线程入口文件
 |   |—— pages                         其他渲染页面--子窗口页面
-|   |—— renderer	                    主渲染线程目录
+|   |—— renderer                      主渲染线程目录
 |   |   |—— api                       接口目录
 |   |   |—— assets                    图片资源目录
 |   |   |—— components                通用组件目录
