@@ -34,6 +34,19 @@
 > 
 > 运行命令中的 mode 产生表示运行模式, 包含开发模式(development)、生产模式(production)。对应与webpack配置中的mode选项
 
+
+### 功能
+1. 热加载开发
+2. 打包生成App.exe 文件
+3. 应用更新
+5. vue3 + typescript 全家桶
+7. 同时支持 sass/scss
+8. ts-node 支持使用 ts编写渲染进程和主进程代码
+9. 支持 vue-devtools 调试
+
+![view](./doc/image/view.png)
+
+
 ### 常见问题
 
 1. 打包应用程序时需要下载 electron-v18.2.0-win32-x64.zip 文件，下载速度很慢，下载失败。
@@ -55,16 +68,7 @@
 8. 注： 添加新窗口的预加载文件必须放在`preloadScript` 目录格式必须是 `preloadScript/文件夹/index.ts` 的方式，webpack 会自动打包对应的index.ts 文件
 
 
-### 功能
-1. 热加载开发
-2. 打包生成App
-3. 应用更新
-5. vue3 + typescript 全家桶
-7. sass/scss
-8. ts-node
-9. 支持 vue-devtools 调试
 
-![view](./doc/image/view.png)
 
 ### 项目目录结构
 
