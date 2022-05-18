@@ -52,6 +52,9 @@
 
 7. prettier 配置进行修改时需要重启编辑器才能生效
 
+8. 注： 添加新窗口的预加载文件必须放在`preloadScript` 目录格式必须是 `preloadScript/文件夹/index.ts` 的方式，webpack 会自动打包对应的index.ts 文件
+
+
 ### 功能
 1. 热加载开发
 2. 打包生成App
@@ -66,25 +69,45 @@
 ### 项目目录结构
 
 ```
-|—— app               项目打包后输出的源文件目录
-|—— pack              打包成App的输出目录
-|—— scripts           webpack 构建应用配置目录
-|—— doc               项目文档和所需文件目录
-|—— config            应用打包配置目录
-|—— src               项目资源目录
-|   |—— main             主线程文件目录
-|   |—— pages            其他渲染页面--子窗口页面
-|   |—— renderer	        主渲染线程目录
-|   |—— static           静态资源目录
-|—— .editorconfig       编辑器配置文件
-|—— .eslintignore       eslint-ignore配置文件
-|—— .eslintrc           eslint配置文件
-|—— .gitignore          git 配置文件
-|—— package-lock.json
-|—— package.json
-|—— README.md
-|—— shims-vue.d.ts      ts解注 .vue 文件
-|—— tsconfig.json       ts配置文件
+|—— app                               项目打包后输出的源文件目录
+|—— pack                              打包成App的输出目录
+|—— scripts                           webpack 构建应用配置目录
+|—— doc                               项目文档和所需文件目录
+|—— config                            应用打包配置目录
+|—— src                               项目资源目录
+|   |—— main                          主线程文件目录
+|   |   |—— createWindow              创建窗口目录
+|   |   |—— plugin                    插件目录
+|   |   |—— preloadScript             窗口预加载文目录
+|   |   |—— registerEvent             注册事件的目录
+|   |   |—— shortcut                  注册快捷键目录
+|   |   |—— sql                       sql.js 目录
+|   |   |—— tray                      托盘目录
+|   |   |—— utils                     工具目录
+|   |   |—— main.ts                   主线程入口文件
+|   |—— pages                         其他渲染页面--子窗口页面
+|   |—— renderer	                    主渲染线程目录
+|   |   |—— api                       接口目录
+|   |   |—— assets                    图片资源目录
+|   |   |—— components                通用组件目录
+|   |   |—— router                    路由目录
+|   |   |—— mock                      mock数据目录
+|   |   |—— store                     仓库目录
+|   |   |—— utils                     工具库目录
+|   |   |—— views                     页面目录
+|   |   |—— App.vue                   vue根组件
+|   |   |—— index.html                渲染进程html模板文件
+|   |   |—— index.ts                  渲染进程入口文件
+|   |—— static                        静态资源目录
+|—— .editorconfig                     编辑器配置文件
+|—— .eslintignore                     eslint-ignore配置文件
+|—— .eslintrc                         eslint配置文件
+|—— .gitignore                        git 配置文件
+|—— package-lock.json                 包版本锁定文件
+|—— package.json                      包版本管理文件
+|—— README.md                         项目说明文件
+|—— shims-vue.d.ts                    ts解注 .vue 文件
+|—— tsconfig.json                     ts配置文件
 
 ```
 
