@@ -65,7 +65,7 @@ export default () => {
     },
     resolve: {
       // 引入文件时可以省略文件后缀名
-      extensions: ['.ts', '.vue', '.js', '.json', '.jsx', '.tsx'],
+      extensions: ['.ts', '.vue', '.js', '.jsx', '.tsx', '.json'],
       // 常用路径别名
       alias: {
         '@': path.join(srcPatch),
